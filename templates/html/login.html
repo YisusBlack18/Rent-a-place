@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="/templates/css/login.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:wght@500&family=Work+Sans&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="contenedor">
+        <!-- Aquí se pone el apartado de la imagen de la izquierda -->
+        <div class="imagen">
+            <img src="/templates/img/rentplaceLOGO.jpg" width="auto">
+        </div>
+        
+        <!-- Aqui se pone el apartado del form -->
+        <div class="form">
+            <form class="items" method="POST">
+                <div class="titulo">
+                    <h1>Iniciar Sesión</h1>
+                </div>
+                <div class="datos">
+                    <label for="">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Introduzca su correo electrónico aquí">
+                    <label for="">Contraseña</label>
+                    <input type="password" id="contraseña" name="contraseña" placeholder="Ingrese su Contraseña aquí">
+                    <a href="#" class="link">¿Se olvidó de su Contraseña?</a>
+                </div>
+                <div class="botones">
+                    <button type="submit" id="iniciarSesion" name="iniciarSesion" value="IniciarSesion">Iniciar sesión</button>
+                </div>
+                <p>¿Aún no tienes una cuenta?<a href="#" class="link">Crear cuenta</a></p>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
