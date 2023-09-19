@@ -1,0 +1,181 @@
+body, html {
+    /* height: 100vh; */
+    margin: 0;
+}
+
+body {
+    font-family: 'Work Sans', sans-serif;
+}
+
+.contenedor {
+    display: grid;
+    /* grid-template-rows: repeat(3, 2fr); */
+    grid-row-gap: 20px;
+}
+
+/* Este es un contenedor para tener el input y el boton en la misma fila */
+.buscar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Aqui en adelante editamos los elementos del buscador */
+.cajaBuscador {
+    flex: 1;
+    background-color: aquamarine;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 150px;
+}
+
+.cajaBuscador input {
+    flex: 2;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 40px 10px 30px;
+    width: 400px;
+}
+
+/* Aqui le quitamos la x al final del input */
+.cajaBuscador input:focus::-webkit-search-cancel-button {
+    display: none;
+}
+
+.cajaBuscador input:focus {
+    outline: none;
+}
+
+/* Aqui le ponemos el boton para buscar la info del input */
+.cajaBuscador button {
+    border: none;
+    border-radius: 8px;
+    color: black;
+    background-color: white;
+    padding: 8px 20px;
+    margin-left: -50px;
+    cursor: pointer;
+}
+
+/* Aqui empezaremos a diseñar la parte de las destacadas del index */
+.cajaDestacadas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 80px;
+    flex-direction: column;
+}
+
+.izquierdaDestacada {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.derechaDestacada {
+    flex: 1;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    transition: 0.2s;
+}
+
+.all {
+    background-color: white;
+    border: 1px solid rgb(139, 139, 139);
+    padding: 3px 20px;
+    transition: 0.3s;
+}
+
+.all:hover {
+    cursor: pointer;
+    box-shadow: 4px 3px 12px 0px rgba(0,0,0,0.33);
+}
+
+.cajas {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.caja {
+    flex: 2;
+    border: 1px solid rgb(199, 199, 199);
+    padding: 5px 10px;
+    margin: 10px 15px;
+    min-width: 190px;
+    max-width: 210px;
+}
+
+.textochico {
+    font-size: 12px;
+}
+
+.img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgb(199, 199, 199);
+}
+
+.caja p {
+    margin-bottom: 10px !important;
+}
+
+/* Aqui empezaremos a diseñar la parte de abajo del index */
+.cajaBuscarMapa {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+}
+
+.izquierda {
+    border: 1px solid rgb(199, 199, 199);
+    padding: 0px 70px 20px 20px;
+}
+
+.izquierda p {
+    margin-bottom: 70px;
+}
+
+.izquierda button {
+    background-color: red;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.izquierda button:hover {
+    cursor: pointer;
+    box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.55);
+}
+
+/* Aqui se trata de hacer responsiva la pantalla */
+@media screen and (max-width: 700px) {
+    
+    .cajaBuscador {
+        padding: 70px 50px 100px;
+    }
+
+    .all {
+        font-size: 18px;
+        padding: 6px 25px;
+    }
+
+    /* Se elimina la imagen del fondo */
+    .derecha {
+        display: none;
+    }
+
+    .izquierda button {
+        padding: 10px 15px;
+        font-size: 20px;
+    }
+}
