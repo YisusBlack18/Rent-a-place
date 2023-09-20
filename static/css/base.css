@@ -6,6 +6,7 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    font-family: 'Work Sans', sans-serif !important;
 }
 
 /* Diseño de la barra de navegacion */
@@ -48,6 +49,8 @@ body {
 
 .nav-link.anunciar a {
     margin: 0 !important;
+    color: white !important;
+    font-weight: bold;
 }
 
 .nav-link.sesion {

@@ -114,6 +114,10 @@ body {
     font-size: 12px;
 }
 
+.icono {
+    display: flex;
+}
+
 .img {
     display: flex;
     justify-content: center;
