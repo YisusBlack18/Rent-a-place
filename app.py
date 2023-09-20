@@ -6,14 +6,16 @@ app.secret_key = os.urandom(24)
 
 users = {}
 
+# Esta ruta es para la pagina principal
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    if 'username' in session:
-        username = session['username']
-        return render_template('index.html', username=username)
+    if 'email' in session:
+        email = session['email']
+        return render_template('index.html', username=email)
     else:
         return render_template('index.html')
 
+# Esta ruta es para iniciar sesión del usuario
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -33,18 +35,23 @@ def logout():
     session.pop('username', None)
     return redirect(url_for('index'))
 
+# Esta ruta es para registrar un usuario
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        username = request.form['username']
+        name = request.form['nombre']
+        telefono = request.form['celular']
+        email = request.form['email']
         password = request.form['password']
-        name = request.form['name']
-        telefono = request.form['telefono']
-        if username in users:
+        password2 = request.form['password2']
+        terminos = request.form['terminos']
+        if email in users:
             return render_template('registro.html', error='Ese nombre de usuario ya está en uso')
+        elif terminos is 'on':
+            return render_template('registro.html', error='Favor de aceptar terminos y condiciones')
         else:
-            users[username] = {'username': username, 'password': password, 'name': name, 'telefono': telefono}
-            session['username'] = username
+            users[email] = {'password': password, 'name': name, 'telefono': telefono}
+            session['email'] = email
             return redirect(url_for('index'))
     else:
         return render_template('registro.html')

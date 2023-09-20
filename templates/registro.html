@@ -62,25 +62,28 @@
                 <img src="/static/img/google.webp" width="30">
                 Conectate con Google</button>
         </div>
-        <input class="formulario" type="text" placeholder="Nombre y Apellido">
-        <input class="formulario" type="text" placeholder="Celular">
-        <input class="formulario" type="email" name="" id="" placeholder="Email">
-        <input class="formulario" type="password" name="" id="" placeholder="Contraseña">
-        <input class="formulario" type="password" name="" id="" placeholder="Confirmar Contraseña">
+        {% if error %}
+			<p style="color: red;">{{ error }}</p>
+		{% endif %}
+        <input class="formulario" type="text" name="nombre" id="nombre" placeholder="Nombre y Apellido" required>
+        <input class="formulario" type="text" name="celular" id="celular" placeholder="Celular" required>
+        <input class="formulario" type="email" name="email" id="email" placeholder="Email" required>
+        <input class="formulario" type="password" name="password" id="password" placeholder="Contraseña" required>
+        <input class="formulario" type="password" name="password2" id="password2" placeholder="Confirmar Contraseña" required>
         <div class="caja">
             <div class="checkbox">
-                <input class="cbox" type="checkbox" name="" id="">
+                <input class="cbox" type="checkbox" name="terminos" id="terminos" required>
                 <p>Acepto los terminos y condiciones</p>
             </div>
             <div class="checkbox">
-                <input class="cbox" type="checkbox" name="" id="">
+                <input class="cbox" type="checkbox" name="suscripcion" id="suscripcion">
                 <p>Permito que Rent Place se comunique conmigo por correo electrónico, SMS, etc. para fines de marketing y produccion.</p>
             </div>
         </div>
         <div class="botones">
-            <button type="submit" id="registrarse" name="registrarse" value="Registrarse">Registrarse</button>
+            <button type="submit" id="registro" name="registro" value="registrarse">Registrarse</button>
         </div>
-        <p>¿Ya eres usuario? <a href="" class="link">Inicio</a> ahora!</p>
+        <p>¿Ya eres usuario? <a href="/login" class="link">Inicio</a> ahora!</p>
     </form>
 </body>
 </html>
