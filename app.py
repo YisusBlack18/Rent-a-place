@@ -90,5 +90,13 @@ def user(username):
     else:
         return render_template('404.html'), 404
 
+@app.route('/propiedades')
+def propiedades():
+    if 'email' in session:
+        email = session['email']
+        return render_template('propiedades.html', email=email)
+    else:
+        return render_template('propiedades.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
