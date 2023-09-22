@@ -128,7 +128,7 @@ body, html {
 
 .izquierda {
     border: 1px solid rgb(199, 199, 199);
-    padding: 0px 70px 20px 20px;
+    padding: 20px 70px 20px 20px;
 }
 
 .izquierda p {
