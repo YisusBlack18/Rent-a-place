@@ -74,7 +74,7 @@ body {
 /* pequeñOs ajustes del body (main) */
 
 .body {
-    /* margin-top: 12vh; */
+    margin-top: 11vh;
     width: 100%;
     min-height: 350px;
 }

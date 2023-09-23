@@ -4,7 +4,6 @@ body, html {
 }
 
 .cajaFiltro {
-    border: 1px solid red;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -19,6 +18,11 @@ body, html {
     border-radius: 5px;
     border: 1px solid rgb(190, 190, 190);
     color: rgb(63, 63, 63);
+    background-color: white;
+}
+
+.option:focus {
+    color: black !important;
 }
 
 .subFiltro:focus {
@@ -42,10 +46,14 @@ input[type='search']:focus::-webkit-search-cancel-button {
     padding: 0px 5px;
     margin-left: -50px;
     cursor: pointer;
+    background-color: white;
 }
 
+
+/* Aqui empieza el diseño de la seccion de las propiedades en renta */
 .cajaPropiedades {
     flex-direction: column;
+    max-width: 1290px;
 }
 
 .cajas {
@@ -80,4 +88,53 @@ input[type='search']:focus::-webkit-search-cancel-button {
 
 .caja p {
     margin-bottom: 10px !important;
+}
+
+/* Diseño donde viene la paginacion */
+.pagination {
+    margin: 20px;
+}
+
+.page-item a {
+    margin: 0;
+}
+
+.page-link {
+    background-color: #f8f8f8 !important;
+    border: 1px solid black !important;
+    color: black !important;
+    transition: 0.2s;
+}
+
+.page-link:hover {
+    background-color: #ff6767 !important
+}
+
+.page-link:focus {
+    background-color: red !important;
+    color: white !important;
+    font-weight: bold;
+    box-shadow: none !important;
+}
+
+@media screen and (max-width: 1380px ) {
+    .cajaFiltro {
+        flex-wrap: wrap;
+    }
+
+    .subFiltro {
+        margin: 5px 4px;
+    }
+
+    .cajaPropiedades {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .cajas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 }
