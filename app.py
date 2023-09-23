@@ -90,12 +90,19 @@ def user(username):
     else:
         return render_template('404.html'), 404
 
-@app.route('/propiedades')
-def propiedades():
-    if 'email' in session:
-        email = session['email']
-        return render_template('propiedades.html', email=email)
+@app.route('/propiedades/<propiedad>')
+def propiedades(propiedad):
+    propiedad = ''
+    if propiedad != '':
+        if 'email' in session:
+            email = session['email']
+            return render_template('casaIndividual.html', email=email)
+        else:
+            return render_template('casaIndividual.html')
     else:
+        if 'email' in session:
+            email = session['email']
+            return render_template('propiedades.html', email=email)
         return render_template('propiedades.html')
 
 if __name__ == "__main__":
