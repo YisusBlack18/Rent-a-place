@@ -1,0 +1,34 @@
+body {
+    margin: 0;
+}
+
+.carousel.slide {
+    min-width: 90%;
+    margin: 0 40px;
+}
+
+.casaIndividualDerecha {
+    padding: 40px;
+}
+
+.infoUsuario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.btnTelefono, .btnMensaje {
+    margin: 5px 0;
+    width: 80%;
+    border: none;
+    outline: none;
+    border-radius: 8px;
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-evenly;
+    padding-right: 0px;
+}
