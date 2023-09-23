@@ -67,7 +67,11 @@ button {
 /* pequeñOs ajustes del body (main) */
 
 .body {
+<<<<<<< HEAD
     margin-top: 12vh;
+=======
+    /* margin-top: 12vh; */
+>>>>>>> parent of eaa74c3 (Todas las propiedades plantilla terminado)
     width: 100%;
     min-height: 350px;
 }
