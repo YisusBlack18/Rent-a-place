@@ -1,13 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RentPlace</title>
+    <title>{% block title %}Rent Place{% endblock %}</title>
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename= 'css/index.css') }}"> -->
     <link rel="stylesheet" href="/static/css/index.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&family=Raleway:wght@500&family=Work+Sans&display=swap" rel="stylesheet">
 </head>
-<body>
+{% endblock %}
+    {% block body %}
     <div class="contenedor">
         
         <!-- Esta es la seccion de busqueda del index -->
@@ -33,7 +36,9 @@
             <!-- Condicion: si existe una destacada ponerlo en un div -->
             <div class="cajas">
                 <div class="caja">
-                    <div class="img"><img src="/static/img/RentPlaceLogo-removebg-recortado.png" width="50px"></div>
+                    <div class="img">
+                        <img src="/static/img/img4.jpg" width="200">
+                    </div>
                     <h2>Precio</h2>
                     <h3>Apartamento Disponible</h3>
                     <p class="textochico">Ubicacion</p>
@@ -181,9 +186,9 @@
                 <button>Buscar en el mapa</button>
             </div>
             <div class="derecha">
-                <img src="/static/img/RentPlaceLogo-removebg-recortado.png" alt="">
+                <img src="/static/img/img7.jpg" width="400">
             </div>
         </div>
     </div>
-</body>
+{% endblock %}
 </html>

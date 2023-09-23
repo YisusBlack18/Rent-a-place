@@ -3,10 +3,6 @@ body, html {
     margin: 0;
 }
 
-body {
-    font-family: 'Work Sans', sans-serif;
-}
-
 .contenedor {
     display: grid;
     /* grid-template-rows: repeat(3, 2fr); */
@@ -23,12 +19,17 @@ body {
 /* Aqui en adelante editamos los elementos del buscador */
 .cajaBuscador {
     flex: 1;
-    background-color: aquamarine;
+    background-image: url(/static/img/img8.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 150px;
+    height: 500px;
+    /* padding: 150px; */
 }
 
 .cajaBuscador input {
@@ -54,7 +55,7 @@ body {
     border-radius: 8px;
     color: black;
     background-color: white;
-    padding: 8px 20px;
+    padding: 5px 15px;
     margin-left: -50px;
     cursor: pointer;
 }
@@ -74,14 +75,6 @@ body {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-}
-
-.derechaDestacada {
-    flex: 1;
-    display: flex;
-    justify-content: end;
-    align-items: center;
-    transition: 0.2s;
 }
 
 .all {
@@ -123,6 +116,10 @@ body {
     justify-content: center;
     align-items: center;
     border: 1px solid rgb(199, 199, 199);
+    background-attachment: fixed;
+    background-image: url(/static/img/img4.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
 }
 
 .caja p {
@@ -139,7 +136,7 @@ body {
 
 .izquierda {
     border: 1px solid rgb(199, 199, 199);
-    padding: 0px 70px 20px 20px;
+    padding: 20px 70px 20px 20px;
 }
 
 .izquierda p {
@@ -161,11 +158,21 @@ body {
     box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.55);
 }
 
+.derecha {
+    background-image: url(/static/img/img7.jpg);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+}
+
 /* Aqui se trata de hacer responsiva la pantalla */
 @media screen and (max-width: 700px) {
-    
-    .cajaBuscador {
-        padding: 70px 50px 100px;
+    .cajaBuscador input {
+        width: 300px;
+    }
+
+    .cajaDestacadas {
+        margin: 0 40px;
     }
 
     .all {

@@ -1,6 +1,8 @@
 import os
 from flask import Flask, redirect, render_template, request, session, url_for
 
+from usuarios import validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono
+
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
 
@@ -11,7 +13,7 @@ users = {}
 def index():
     if 'email' in session:
         email = session['email']
-        return render_template('index.html', username=email)
+        return render_template('index.html', email=email)
     else:
         return render_template('index.html')
 
@@ -19,20 +21,20 @@ def index():
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
-        username = request.form['username']
+        email = request.form['email']
         password = request.form['password']
-        if username in users and users[username]["password"] == password:
-            session['username'] = username
+        if verifica_login(email,password):
+            session['email'] = email
             return redirect(url_for('index'))
         else:
-            return render_template('login.html', error='Usuario o contraseña incorrectos')
+            return render_template('login.html', error='Correo o contraseña incorrectos')
     else:
         return render_template('login.html')
 
 # Esta ruta es para cerrar la sesión del usuario
 @app.route('/logout')
 def logout():
-    session.pop('username', None)
+    session.pop('email', None)
     return redirect(url_for('index'))
 
 # Esta ruta es para registrar un usuario
@@ -45,14 +47,24 @@ def register():
         password = request.form['password']
         password2 = request.form['password2']
         terminos = request.form['terminos']
-        if email in users:
-            return render_template('registro.html', error='Ese nombre de usuario ya está en uso')
-        elif terminos is 'on':
+        if password != password2:
+            return render_template('registro.html', error='Las contraseñas no coinciden')
+        elif validar_correo(email):
+            return render_template('registro.html', error='Formato de correo no valido')
+        elif verifica_correo(email):
+            return render_template('registro.html', error='Ese correo ya está en uso')
+        elif validar_telefono(telefono):
+            return render_template('registro.html', error='Formato de telefono no valido')
+        elif verifica_telefono(telefono):
+            return render_template('registro.html', error='Ese telefono ya esta en uso')
+        elif terminos != 'on':
             return render_template('registro.html', error='Favor de aceptar terminos y condiciones')
         else:
-            users[email] = {'password': password, 'name': name, 'telefono': telefono}
-            session['email'] = email
-            return redirect(url_for('index'))
+            if verifica_registro(name,telefono,email,password):
+                session['email'] = email
+                return redirect(url_for('index'))
+            else:
+                return render_template('registro.html', error='Registro fallo, Servicio no disponible, intente mas tarde')
     else:
         return render_template('registro.html')
 
@@ -77,6 +89,14 @@ def user(username):
         return render_template('user.html', user=users[username], session=session)
     else:
         return render_template('404.html'), 404
+
+@app.route('/propiedades')
+def propiedades():
+    if 'email' in session:
+        email = session['email']
+        return render_template('propiedades.html', email=email)
+    else:
+        return render_template('propiedades.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -1,14 +1,12 @@
-create database rentaplace;
+CREATE DATABASE IF NOT EXISTS rentaaplace;
 
-use rentaplace;
-
-drop table if exists usuarios;
-
-create table usuarios (
-id int unsigned not null auto_increment, 
-nombre varchar (50) not null, 
-correo varchar (50) not null, 
-telefono int (10) not null, 
-contraseña varchar (50) not null, 
-primary key (id)
+CREATE TABLE usuarios (
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    telefono VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+INSERT INTO usuarios (nombre, telefono, email, password) VALUES ('prueba', '6621000000', 'prueba@gmail.com', 'prueba123');

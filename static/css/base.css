@@ -1,3 +1,9 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body, html {
     margin: 0;
 }
@@ -7,6 +13,7 @@ body {
     flex-direction: column;
     min-height: 100vh;
     font-family: 'Work Sans', sans-serif !important;
+    width: 100vw;
 }
 
 /* Diseño de la barra de navegacion */
@@ -58,7 +65,7 @@ body {
     text-transform: uppercase;
 }
 
-button {
+.nav-link.sesion, .nav-link.anunciar {
     margin: 10px 20px !important;
     border: none;
     overflow: none;
@@ -67,21 +74,7 @@ button {
 /* pequeñOs ajustes del body (main) */
 
 .body {
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 9967c4766a32429557b49441664eed262b145967
-    margin-top: 12vh;
-=======
-    /* margin-top: 12vh; */
->>>>>>> parent of eaa74c3 (Todas las propiedades plantilla terminado)
-<<<<<<< HEAD
-=======
-    /* margin-top: 12vh; */
->>>>>>> parent of eaa74c3 (Todas las propiedades plantilla terminado)
-=======
->>>>>>> 9967c4766a32429557b49441664eed262b145967
+    margin-top: 11vh;
     width: 100%;
     min-height: 350px;
 }
@@ -100,7 +93,7 @@ footer {
     flex-direction: column;
     background-color: #38B6FF;
     font-family: 'Work Sans', sans-serif;
-    /* width: 100vh; */
+    width: 100vw;
 }
 
 /* Este espacio es el diseño del contenedor 1 del footer donde esta el Logo y los metodos de contacto */
@@ -152,7 +145,7 @@ footer {
 
 /* En este estacio esta el diseño del contenedor 2 donde viene mas info de la pagina y nosotros, y tambien lo del Copyright */
 
-.contenedo2 {
+.contenedor2 {
     display: flex;
     flex-wrap: wrap;
     height: 100%;
@@ -195,7 +188,7 @@ p {
     margin-right: 30px;
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 795px) {
     .contenedor1 {
         display: flex;
         justify-content: center;
