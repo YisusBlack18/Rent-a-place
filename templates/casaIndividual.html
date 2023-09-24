@@ -1,5 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
+{% block head %}
+{{ super() }}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,29 @@
     <link rel="stylesheet" href="/static/css/casaIndividual.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
 </head>
-<body>
+{% endblock %}
+{% block body %}
     <div style="display: flex;">
         <div style="margin: 30px;">
             <div style="display: flex; justify-content: space-between;">
                 <div>
+                    <!-- Titulo de la casa -->
                     <h2>Casa Familiar Grande</h2>
                     <p>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                         </svg>
+                        <!-- Ubicacion de la casa -->
                         Ubicacion
                     </p>
                 </div>
+                <!-- Precio de la casa -->
                 <div><h3>Precio</h3></div>
             </div>
-            <div style="display: flex; justify-content: center; align-items: center;">
+            <!-- Este es el carrucel de fotos de la casa -->
+            <div style="display: flex; justify-content: center; align-items: center; position: initial !important;">
                 <div id="carouselExampleIndicators" class="carousel slide">
                     <div class="carousel-indicators">
                         <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -52,7 +58,64 @@
                     </button>
                 </div>
             </div>
+            <!-- Cuadro de la informacion general -->
+            <div class="infoGeneral">
+                <h4 style="margin-bottom: 30px;">Información General</h4>
+                <!-- Informacion del lado izquierdo de la informacion general -->
+                <div style="display: flex; justify-content: space-between;">
+                    <div class="infoGeneral-izquierda">
+                        <div>
+                            <p>Anuncio No.</p>
+                            <p>Fecha de Publicación</p>
+                            <p>Estado</p>
+                            <p>Forma de Vivienda</p>
+                            <p>Num. de Cuartos</p>
+                            <p>M<sup>2</sup></p>
+                            <p>Años de la casa</p>
+                        </div>
+                        <div style="margin-left: 20px; font-weight: bold;">
+                            <p style="color: red;">prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                        </div>
+                    </div>
+                    <!-- Informacion del lado derecho de la informacion general -->
+                    <div class="infoGeneral-derecha">
+                        <div>
+                            <p>Amueblada</p>
+                            <p>Baños</p>
+                            <p>Cochera</p>
+                            <p>WiFi</p>
+                            <p>Televisión</p>
+                            <p>Refrigeradora</p>
+                        </div>
+                        <div style="margin-left: 20px; font-weight: bold;">
+                            <p>prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                            <p>prueba</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Cuadro de la Descripcion -->
+            <div class="descripcion">
+                <h4>Descripción</h4>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptatem reiciendis nisi est. Voluptatum, repellat vitae autem, earum illum quos ducimus delectus consectetur iste exercitationem laboriosam perferendis aspernatur dignissimos. Error, sed?</p>
+            </div>
+            <!-- Cuadro de la informacion de la ubicacion -->
+            <div class="infoUbicacion">
+                <h4>Información de Ubicación</h4>
+            </div>
         </div>
+
+        <!-- Esta es la seccion de la parte de la derecha de la pantalla donde sale el info del usuario y los inputs para reservar -->
         <div class="casaIndividualDerecha">
             <div class="infoUsuario">
                 <img src="/static/img/persona-removebg-preview.png" width="150px" alt="">
@@ -78,17 +141,16 @@
                     </div>
                 </button>
             </div>
+            <!-- Seccion de la reservacion, num huespedes, llegada, salida, y boton -->
             <div class="reservacion">
-                <div>
-                    <input type="number" name="" id="" placeholder="No. Huespedes">
-                </div>
-                <div>
-                    <input type="date" name="" id="" placeholder="Llegada">
-                    <input type="date" name="" id="" placeholder="Salida">
-                </div>
+                <input type="number" name="" id="" placeholder="No. Huespedes">
+                <label for="">Llegada</label>
+                <input type="date" name="" id="" placeholder="Llegada">
+                <label for="">Salida</label>
+                <input type="date" name="" id="" placeholder="Salida">
                 <input class="reservar" type="submit" value="Reservar" name="reservar" id="reservar">
             </div>
         </div>
     </div>
-</body>
+{% endblock %}
 </html>

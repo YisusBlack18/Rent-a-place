@@ -3,12 +3,48 @@ body {
 }
 
 .carousel.slide {
-    min-width: 90%;
+    min-width: 80%;
     margin: 0 40px;
+    box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.11);
+    position: none !important;
+}
+
+.infoGeneral {
+    border: 1px solid rgb(185, 185, 185);
+    padding: 20px 30px;
+    margin: 15px 0;
+    box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.11);
+}
+
+.infoGeneral-izquierda {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+.infoGeneral-derecha {
+    display: flex;
+    flex-direction: row;
+    margin-right: 50px;
+}
+
+.descripcion {
+    border: 1px solid rgb(185, 185, 185);
+    padding: 10px;
+    margin: 15px 0;
+    box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.11);
+}
+
+.infoUbicacion {
+    border: 1px solid rgb(185, 185, 185);
+    padding: 10px;
+    margin: 15px 0;
+    box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.11);
 }
 
 .casaIndividualDerecha {
     padding: 40px;
+    width: 30%;
 }
 
 .infoUsuario {
@@ -19,6 +55,7 @@ body {
     border: 1px solid rgb(185, 185, 185);
     border-radius: 5px;
     padding: 10px;
+    margin-bottom: 50px;
 }
 
 .btnTelefono, .btnMensaje {
@@ -32,3 +69,80 @@ body {
     justify-content: space-evenly;
     padding-right: 0px;
 }
+
+.btnTelefono {
+    background-color: #38B6FF;
+    color: white;
+    transition: 0.3s;
+}
+
+.btnTelefono:hover {
+    background-color: #2c8bc2;
+    box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.33);
+}
+
+.btnMensaje {
+    border: 2px solid #38B6FF;
+    color: #38B6FF;
+    font-weight: bold;
+    background-color: white;
+    transition: 0.3s;
+}
+
+.btnMensaje:hover {
+    border: 2px solid #2c8bc2;
+    color: #2c8bc2;
+    box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.33);
+}
+
+.reservacion {
+    display: flex;
+    flex-direction: column;
+}
+
+.reservacion label {
+    font-weight: bold;
+}
+
+input[type="number"] {
+    margin-bottom: 15px;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 5px;
+    padding: 5px 10px;
+    outline: none;
+    transition: 0.3s;
+}
+
+input[type=date] {
+    margin-bottom: 15px;
+    border: 1px solid rgb(185, 185, 185);
+    border-radius: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    transition: 0.3s;
+    outline: none;
+}
+
+input[type=date]:hover, input[type=number]:hover {
+    box-shadow: 4px 3px 10px 0px rgba(0,0,0,0.33);
+}
+
+input[type=date]:focus, input[type=number]:focus {
+    box-shadow: 4px 3px 10px 0px rgba(0,0,0,0.33);
+}
+
+.reservar {
+    border: none;
+    outline: none;
+    background-color: #38B6FF;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 20px;
+    transition: 0.3s;
+}
+
+.reservar:hover {
+    background-color: #2c8bc2;
+    box-shadow: 4px 3px 15px 0px rgba(0,0,0,0.33);
+}
+

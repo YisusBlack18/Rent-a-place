@@ -97,6 +97,14 @@ def propiedades():
         return render_template('propiedades.html', email=email)
     else:
         return render_template('propiedades.html')
+    
+@app.route('/casaIndividual')
+def casaIndividual():
+    if 'email' in session:
+        email = session['email']
+        return render_template('casaIndividual.html', email=email)
+    else:
+        return render_template('casaIndividual.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

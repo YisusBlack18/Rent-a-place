@@ -22,6 +22,7 @@ body {
     background-color: #38B6FF !important;
     position: fixed;
     width: 100%;
+    z-index: 3 !important;
 }
 
 .navbar-toggler {
