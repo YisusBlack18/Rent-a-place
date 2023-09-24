@@ -104,6 +104,8 @@ def propiedades(propiedad='lista'):
             return render_template('propiedades.html', email=email)
         return render_template('propiedades.html')
     
+
+    # Este es solamente de prueba para ver como se veia, no es importante!!! 
 @app.route('/casaIndividual')
 def casaIndividual():
     if 'email' in session:
