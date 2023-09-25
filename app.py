@@ -1,5 +1,6 @@
 import os
 from flask import Flask, redirect, render_template, request, session, url_for
+from propiedades import obtener_dict_propiedades, obtener_propiedad, obtener_propiedades
 
 from usuarios import validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono
 
@@ -90,19 +91,23 @@ def user(username):
     else:
         return render_template('404.html'), 404
 
+# Esta ruta es para mostrar la lista de propiedades
+@app.route('/propiedades')
 @app.route('/propiedades/<propiedad>')
 def propiedades(propiedad='lista'):
     if propiedad != 'lista':
+        propiedad = obtener_dict_propiedades()[propiedad]
         if 'email' in session:
             email = session['email']
-            return render_template('casaIndividual.html', email=email)
+            return render_template('casaIndividual.html', propiedad=propiedad, email=email)
         else:
-            return render_template('casaIndividual.html')
+            return render_template('casaIndividual.html', propiedad=propiedad)
     else:
+        propiedades = obtener_dict_propiedades()
         if 'email' in session:
             email = session['email']
-            return render_template('propiedades.html', email=email)
-        return render_template('propiedades.html')
+            return render_template('propiedades.html', propiedades=propiedades, email=email)
+        return render_template('propiedades.html', propiedades=propiedades)
     
 
     # Este es solamente de prueba para ver como se veia, no es importante!!! 
