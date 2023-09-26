@@ -1,8 +1,8 @@
 import os
 from flask import Flask, redirect, render_template, request, session, url_for
-from propiedades import obtener_dict_propiedades, obtener_propiedad, obtener_propiedades
+from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades
 
-from usuarios import validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono
+from usuarios import obtener_dict_usuario, validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -12,11 +12,12 @@ users = {}
 # Esta ruta es para la pagina principal
 @app.route('/', methods=['GET', 'POST'])
 def index():
+    propiedades = obtener_dict_propiedades()
     if 'email' in session:
         email = session['email']
-        return render_template('index.html', email=email)
+        return render_template('index.html', propiedades=propiedades, email=email)
     else:
-        return render_template('index.html')
+        return render_template('index.html', propiedades=propiedades)
 
 # Esta ruta es para iniciar sesión del usuario
 @app.route('/login', methods=['GET', 'POST'])
@@ -92,32 +93,31 @@ def user(username):
         return render_template('404.html'), 404
 
 # Esta ruta es para mostrar la lista de propiedades
-@app.route('/propiedades')
-@app.route('/propiedades/<propiedad>')
+@app.route('/propiedades', methods=['GET','POST'])
+@app.route('/propiedades/<propiedad>', methods=['GET','POST'])
 def propiedades(propiedad='lista'):
-    if propiedad != 'lista':
-        propiedad = obtener_dict_propiedades()[propiedad]
-        if 'email' in session:
-            email = session['email']
-            return render_template('casaIndividual.html', propiedad=propiedad, email=email)
+    if request.method == 'GET':
+        if propiedad != 'lista':
+            propiedad = obtener_dict_propiedades()[int(propiedad)]
+            dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
+            if 'email' in session:
+                email = session['email']
+                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
+            else:
+                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
         else:
-            return render_template('casaIndividual.html', propiedad=propiedad)
-    else:
-        propiedades = obtener_dict_propiedades()
-        if 'email' in session:
-            email = session['email']
-            return render_template('propiedades.html', propiedades=propiedades, email=email)
+            propiedades = obtener_dict_propiedades()
+            if 'email' in session:
+                email = session['email']
+                return render_template('propiedades.html', propiedades=propiedades, email=email)
+            return render_template('propiedades.html', propiedades=propiedades)
+    elif request.method == 'POST':
+        zona = request.form['zona']
+        precio = request.form['precio']
+        fecha = request.form['fechas']
+        numHabitaciones = request.form['numHabitaciones']
+        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones)
         return render_template('propiedades.html', propiedades=propiedades)
-    
-
-    # Este es solamente de prueba para ver como se veia, no es importante!!! 
-@app.route('/casaIndividual')
-def casaIndividual():
-    if 'email' in session:
-        email = session['email']
-        return render_template('casaIndividual.html', email=email)
-    else:
-        return render_template('casaIndividual.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

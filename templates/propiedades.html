@@ -20,7 +20,7 @@
                 <option class="option" value="zona">Zona</option>
             </select>
             <select class="subFiltro" name="fechas" id="fechas">
-                <option class="option" value="fehcas">Fechas</option>
+                <option class="option" value="fechas">Fechas</option>
             </select>
             <select class="subFiltro" name="precio" id="precio">
                 <option class="option" value="precio">Precio</option>
@@ -29,7 +29,7 @@
                 <option class="option" value="numHabitaciones">Numero de Habitaciones</option>
             </select>        
             <div class="buscar">
-                <input class="subFiltro" type="search" name="" id="">
+                <input class="subFiltro" type="search" name="filtrar" id="filtrar">
                 <button class="buscadorIcon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -48,14 +48,15 @@
             <h2>Casas en renta</h2>
             <div class="cajas">
                 {% for id,casa in propiedades.items() %}
+                <a href="/propiedades/{{id}}">
                 <div class="caja">
                     <div class="img">
-                        <img src="/static/img/img4.jpg" width="200">
+                        <img src={{casa.Fotos}} width="200" height="150">
                     </div>
                     <h2>${{casa.Precio}}</h2>
                     <h3>{{casa.Categoria}} Disponible</h3>
                     <p class="textochico">{{casa.ZonaEstado}}</p>
-                    <p class="textochico">Fecha implementacion</p>
+                    <p class="textochico">{{casa.Fecha}}</p>
                     <div class="icono">
                         <div class="icono">
                             <!-- Icono para señalar el numero de cuartos dentro del departamento -->
@@ -80,6 +81,7 @@
                         </div>
                     </div>
                 </div>
+                </a>
                 {% endfor %}
             </div>
         </div>

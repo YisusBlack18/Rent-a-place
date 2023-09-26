@@ -76,6 +76,34 @@ def validar_telefono(telefono):
     else:
         return False
 
+def obtener_usuario(id):
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("SELECT id,nombre,telefono,email FROM usuarios WHERE id = {}".format(id))
+        rows = c.fetchall()
+        conn.close()
+        return rows
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
+
+def crea_dict_usuario(id):
+    usuario = obtener_usuario(id)
+    dict_usuario = {}
+    for user in usuario:
+        usuario = {
+            "ID": user[0],
+            "Nombre": user[1],
+            "Telefono" : user[2],
+            "Email": user[3]
+        }
+        dict_usuario = usuario
+    return dict_usuario
+
+def obtener_dict_usuario(id):
+    return crea_dict_usuario(id)
+
 def crear_conexion():
     return crear_conexion_local()
 

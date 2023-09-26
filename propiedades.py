@@ -31,25 +31,28 @@ def crea_dict_propiedades():
     for propiedad in propiedades:
         casa = {
             "ID": propiedad[0],
-            "Titulo" : propiedad[1],
-            "Descripcion": propiedad[2],
-            "Categoria" : propiedad[3],
-            "Precio" : propiedad[4],
-            "Metros2" : propiedad[5],
-            "Direccion" : propiedad[6],
-            "NoHabitaciones" : propiedad[7],
-            "NoSalas" : propiedad[8],
-            "NoBanios" : propiedad[9],
-            "NoPersonas" : propiedad[10],
-            "ZonaEstado" : propiedad[11],
-            "Antiguedad" : propiedad[12],
-            "Estado" : propiedad[13],
-            "Amueblada" : propiedad[14],
-            "Cochera" : propiedad[15],
-            "WIFI" : propiedad[16],
-            "Television" : propiedad[17],
-            "Refrigeradora" : propiedad[18],
-            "Fotos" : propiedad[19],
+            "ID_dueno": propiedad[1],
+            "Titulo" : propiedad[2],
+            "Descripcion": propiedad[3],
+            "Categoria" : propiedad[4],
+            "Precio" : propiedad[5],
+            "Metros2" : propiedad[6],
+            "Direccion" : propiedad[7],
+            "NoHabitaciones" : propiedad[8],
+            "NoSalas" : propiedad[9],
+            "NoBanios" : propiedad[10],
+            "NoPersonas" : propiedad[11],
+            "ZonaEstado" : propiedad[12],
+            "Antiguedad" : propiedad[13],
+            "Estado" : propiedad[14],
+            "Amueblada" : propiedad[15],
+            "Cochera" : propiedad[16],
+            "WIFI" : propiedad[17],
+            "Television" : propiedad[18],
+            "Refrigeradora" : propiedad[19],
+            "Banos" : "Si" if propiedad[10] != 0 else "No",
+            "Fotos" : propiedad[20],
+            "Fecha" : propiedad[21]
         }
         dict_propiedades[propiedad[0]] = casa
     return dict_propiedades
@@ -59,6 +62,18 @@ def obtener_dict_propiedades():
 
 def crear_conexion():
     return crear_conexion_local()
+
+def filtrar_propiedades(zona,precio,fecha,numHabitaciones):
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("SELECT * FROM propiedades WHERE ZonaEstado = '{}' AND Precio <= {} AND NoHabitaciones = {}".format(zona,precio,numHabitaciones))
+        rows = c.fetchall()
+        conn.close()
+        return rows
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
 
 if __name__ == '__main__':
     print("Este archivo no se ejecuta")
