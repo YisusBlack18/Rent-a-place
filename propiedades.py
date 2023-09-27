@@ -25,8 +25,11 @@ def obtener_propiedad(id_propiedad):
         print("Algo salio mal: {}".format(err))
         return False
 
-def crea_dict_propiedades():
-    propiedades = obtener_propiedades()
+def crea_dict_propiedades(rows=None):
+    if rows is None:
+        propiedades = obtener_propiedades()
+    else:
+        propiedades = rows
     dict_propiedades = {}
     for propiedad in propiedades:
         casa = {
@@ -63,17 +66,63 @@ def obtener_dict_propiedades():
 def crear_conexion():
     return crear_conexion_local()
 
-def filtrar_propiedades(zona,precio,fecha,numHabitaciones):
+def filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar):
+    resultados={}
     try:
         conn = crear_conexion()
         c = conn.cursor()
-        c.execute("SELECT * FROM propiedades WHERE ZonaEstado = '{}' AND Precio <= {} AND NoHabitaciones = {}".format(zona,precio,numHabitaciones))
+        # Construir la consulta SQL base
+        query = "SELECT * FROM propiedades WHERE 1"
+        # Agregar condiciones según los argumentos proporcionados
+        if zona != "zona":
+            query += " AND ZonaEstado = '{}'".format(zona)
+        if precio != None:
+            precio2=int(precio - 10000)
+            query += " AND Precio BETWEEN {} AND {}".format(precio2,precio)
+        if fecha != None and fecha != 'fechas':
+            query += " AND FechaCreacion = '{}'".format(fecha)
+        if numHabitaciones != "numHabitaciones":
+            if numHabitaciones == "5":
+                query += " AND NoHabitaciones >= 5"
+            else:
+                query += " AND NoHabitaciones = {}".format(numHabitaciones)
+        if buscar != None:
+            query += " AND (Titulo LIKE '%{}%' OR Categoria LIKE '%{}%')".format(buscar,buscar)
+        # Ejecutar la consulta
+        c.execute(query)
         rows = c.fetchall()
         conn.close()
-        return rows
+        # Crear un diccionario con los valores obtenidos
+        resultados = crea_dict_propiedades(rows)
+        return resultados
+    except Error as err:
+        print("Algo salió mal: {}".format(err))
+        return resultados
+
+
+def obtener_valores_base():
+    try:
+        dict_valores = {}
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("SELECT DISTINCT ZonaEstado FROM propiedades")
+        rows = c.fetchall()
+        agrega_dict_valores(dict_valores,'zonas',rows)
+        c.execute("SELECT DISTINCT FechaCreacion FROM propiedades")
+        rows = c.fetchall()
+        agrega_dict_valores(dict_valores,'fechas',rows)
+        conn.close()
+        return dict_valores
     except Error as err:
         print("Algo salio mal: {}".format(err))
         return False
+
+def agrega_dict_valores(dicc,id,rows):
+    dicc[id] = []
+    for row in rows:
+        dicc[id].append(row[0])
+    return dicc
+
 
 if __name__ == '__main__':
     print("Este archivo no se ejecuta")

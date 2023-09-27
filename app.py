@@ -1,6 +1,6 @@
 import os
 from flask import Flask, redirect, render_template, request, session, url_for
-from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades
+from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_valores_base
 
 from usuarios import obtener_dict_usuario, validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono
 
@@ -107,17 +107,24 @@ def propiedades(propiedad='lista'):
                 return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
         else:
             propiedades = obtener_dict_propiedades()
+            dict_valores = obtener_valores_base()
+            zonas = dict_valores["zonas"]
+            fechas = dict_valores["fechas"]
             if 'email' in session:
                 email = session['email']
-                return render_template('propiedades.html', propiedades=propiedades, email=email)
-            return render_template('propiedades.html', propiedades=propiedades)
+                return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
+            return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
     elif request.method == 'POST':
         zona = request.form['zona']
-        precio = request.form['precio']
+        precio = request.form.get('precio',type=int)
         fecha = request.form['fechas']
-        numHabitaciones = request.form['numHabitaciones']
-        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones)
-        return render_template('propiedades.html', propiedades=propiedades)
+        numHabitaciones = request.form.get('numHabitaciones')
+        buscar = request.form['buscar']
+        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
+        dict_valores = obtener_valores_base()
+        zonas = dict_valores["zonas"]
+        fechas = dict_valores["fechas"]
+        return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -15,34 +15,51 @@
 {% block body%}
     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
         <!-- Caja para opciones de filtracion -->
+        <form method="POST">
         <div class="cajaFiltro">
             <select class="subFiltro" name="zona" id="zona">
                 <option class="option" value="zona">Zona</option>
+                {% for zona in zonas %}
+                <option class="option" value="{{zona}}">{{zona}}</option>
+                {% endfor %}
             </select>
             <select class="subFiltro" name="fechas" id="fechas">
                 <option class="option" value="fechas">Fechas</option>
+                {% for fecha in fechas %}
+                <option class="option" value="{{fecha}}">{{fecha}}</option>
+                {% endfor %}
             </select>
             <select class="subFiltro" name="precio" id="precio">
                 <option class="option" value="precio">Precio</option>
+                <option class="option" value="10000">$0 - $10,000</option>
+                <option class="option" value="20000">$10,000 - $20,000</option>
+                <option class="option" value="30000">$20,000 - $30,000</option>
+                <option class="option" value="40000">$30,000 - $40,000</option>
+                <option class="option" value="50000">$40,000 - $50,000</option>
             </select>
             <select class="subFiltro" name="numHabitaciones" id="numHabitaciones">
                 <option class="option" value="numHabitaciones">Numero de Habitaciones</option>
+                <option class="option" value="1">1</option>
+                <option class="option" value="2">2</option>
+                <option class="option" value="3">3</option>
+                <option class="option" value="4">4</option>
+                <option class="option" value="5">5+</option>
             </select>        
             <div class="buscar">
-                <input class="subFiltro" type="search" name="filtrar" id="filtrar">
+                <input class="subFiltro" type="search" name="buscar" id="buscar">
                 <button class="buscadorIcon">
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
                 </button>
             </div>
-            <button class="subFiltro">
+            <button class="subFiltro" type="submit" name="filtrar" id="filtrar">
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-funnel-fill" viewBox="0 0 16 16">
                     <path d="M1.5 1.5A.5.5 0 0 1 2 1h12a.5.5 0 0 1 .5.5v2a.5.5 0 0 1-.128.334L10 8.692V13.5a.5.5 0 0 1-.342.474l-3 1A.5.5 0 0 1 6 14.5V8.692L1.628 3.834A.5.5 0 0 1 1.5 3.5v-2z"/>
                 </svg>
             </button>
         </div>
-        
+        </form>
         <!-- Caja para todas las propiedades que salgan en pantalla -->
         <div class="cajaPropiedades">
             <h2>Casas en renta</h2>
