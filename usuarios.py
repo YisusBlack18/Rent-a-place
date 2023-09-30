@@ -51,7 +51,10 @@ def validar_correo(correo):
     # Realizar la validación utilizando la expresión regular y el método search de re
     resultado = re.search(patron, correo)
     # Devolver True si el correo electrónico es válido, False en caso contrario
-    return resultado is not None
+    if resultado == False:
+        return True
+    else:
+        return False
 
 def verifica_telefono(entrada):
     try:
@@ -71,7 +74,7 @@ def verifica_telefono(entrada):
 def validar_telefono(telefono):
     patron = r'^\+?1?\d{9,15}$'
     resultado = re.match(patron, telefono)
-    if resultado:
+    if resultado == False:
         return True
     else:
         return False
