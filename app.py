@@ -161,5 +161,9 @@ def rentasPrevias(propiedad='lista'):
         fechas = dict_valores["fechas"]
         return render_template('rentasPrevias.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
 
+@app.route('/anunciar', methods=['GET', 'POST'])
+def anunciar():
+    return render_template('anuncioExitoso.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
