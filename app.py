@@ -173,5 +173,9 @@ def rentar():
 def pagar():
     return render_template('pagoRenta.html')
 
+@app.route('/subirPropiedadSegundoPaso', methods=['GET', 'POST'])
+def subirSegundo():
+    return render_template('subirPropiedadSegundoPaso.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
