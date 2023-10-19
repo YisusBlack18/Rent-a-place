@@ -24,26 +24,6 @@
 {% block body %}
 <div id="mainRentar">
     <div id="informacionRenta-container">
-        <div id="encabezadoPropiedad">
-            <div>
-                <!-- Titulo de la casa -->
-                <h2>Casa 1</h2>
-                <p>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                        class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                        <path
-                            d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                    </svg>
-                    <!-- Ubicacion de la casa -->
-                    Ubicacion
-                </p>
-            </div>
-            <!-- Precio de la casa -->
-            <div>
-                <h3>500000</h3>
-            </div>
-        </div>
-
         <div id="carouselInformacion-container">
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
@@ -70,7 +50,26 @@
             </div>
 
             <div id="informacionPago-container">
-                <p class="me-0 mb-4 w-100">Informacion General</p>
+                <div id="encabezadoPropiedad">
+                    <div>
+                        <!-- Titulo de la casa -->
+                        <h2>Información General</h2>
+                        <p class="me-0 mb-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path
+                                    d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
+                            </svg>
+                            <!-- Ubicacion de la casa -->
+                            Ubicacion
+                        </p>
+                    </div>
+                    <!-- Precio de la casa -->
+                    <div>
+                        <h3>500000</h3>
+                    </div>
+                </div>
+
                 <div id="textoInformacion">
                     <div class="textoInformacion-subcontainer">
                         <div class="tamanoTexto textoInformacion-izquierda">
@@ -114,8 +113,10 @@
         </div>
 
         <div id="explanation-container">
-            <h3>Explanation</h3>
-            <p class="me-0 mb-0 text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, neque laudantium minus animi adipisci facilis expedita inventore laboriosam quasi vitae in magnam, laborum ad quia vero repellat debitis voluptatem excepturi?</p>
+            <h4>Explanation</h4>
+            <p class="me-0 mb-0 text-secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, neque
+                laudantium minus animi adipisci facilis expedita inventore laboriosam quasi vitae in magnam, laborum ad
+                quia vero repellat debitis voluptatem excepturi?</p>
         </div>
 
     </div>
