@@ -165,5 +165,13 @@ def rentasPrevias(propiedad='lista'):
 def anunciar():
     return render_template('anuncioExitoso.html')
 
+@app.route('/rentar', methods=['GET','POST'])
+def rentar():
+    return render_template('informacionRenta.html')
+
+@app.route('/pagar', methods=['GET', 'POST'])
+def pagar():
+    return render_template('pagoRenta.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
