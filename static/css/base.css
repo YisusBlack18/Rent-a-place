@@ -20,9 +20,9 @@ body {
 
 .navbar-expand-lg.bg-body-tertiary {
     background-color: #38B6FF !important;
-    position: fixed;
+    position: fixed !important;
     width: 100%;
-    z-index: 3 !important;
+    z-index: 4 !important;
 }
 
 .navbar-toggler {

@@ -3,11 +3,289 @@ body, html {
     font-family: 'Work Sans', sans-serif;
 }
 
-button {
-    border-radius: 20px;
+/* Seccion de Diseño para la Barra de Progreso */
+.barraProgreso{
+    margin-top: 70px;
+    margin-bottom: 30px;
+    width: 85%;
+    margin: 0 40px;
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+.progress {
+    margin-top: 30px !important;
+    margin-bottom: -25px !important;
+    grid-column: 1/-1 !important;
+}
+
+.cajaBotones {
+    display: flex;
+    justify-content: space-between;
+    grid-column: 1/-1;
+    z-index: 3;
+}
+
+.button {
+    margin-top: 0px;
+    border-radius: 50% !important;
     border: none;
     color: black;
-    background-color: #38B6FF;
+    background-color: #b2b2b2;
     width: 50px;
     height: 50px;
+}
+
+/* Seccion de Diseño para Subir Info */
+.cajaSubirInfo {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+    flex-wrap: wrap;
+    /* text-align: left; */
+    border: 2px solid rgb(211, 211, 211);
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 5px;
+    flex-direction: row;
+    margin: 20px 0;
+    background-color: #f6f6f6;
+}
+
+.contenidoSubirInfo {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    height: 100%;
+    flex-wrap: wrap;
+}
+
+.formSubirInfo {
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+.labelrequisito {
+    display: flex !important;
+    flex-direction: row !important;
+}
+
+form .contenido-inputs.subirInfo {
+    width: 50%;
+    min-width: 230px;
+    margin: 10px 40px !important;
+    display: flex;
+    justify-content: start;
+    align-items: start;
+}
+
+form .contenido-inputs select {
+    display: block;
+    width: 100%;
+    min-width: 230px;
+    border-radius: 6px;
+    border: 0;
+    padding: 10px 10px;
+    font-size: 14px;
+    border: 1px solid #969696;
+    background-color: #f6f6f6;
+}
+
+form .contenido-inputs select:focus {
+    outline: none;
+    border: 1px solid #969696;
+}
+
+form .contenido-inputs textarea {
+    display: block;
+    width: 100%;
+    min-width: 265px;
+    resize: none;
+    border-radius: 6px;
+    border: 0;
+    padding: 10px 10px;
+    font-size: 14px;
+    border: 1px solid #969696;
+    background-color: #f6f6f6;
+}
+
+form .contenido-inputs textarea:focus {
+    outline: none;
+    border: 1px solid #969696;
+}
+
+.requisito {
+    color: red;
+    margin: 0 !important;
+    padding-left: 5px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+.subirFotos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-direction: column;
+}
+
+/* Seccion de Diseño para el Contacto */
+.cajaContacto {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    /* text-align: left; */
+    border: 2px solid rgb(211, 211, 211);
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 5px;
+    flex-direction: row;
+    margin-bottom: 30px;
+    background-color: #f6f6f6;
+}
+
+/* Seccion de Rellenar Informacion en paso: CONTACTO*/
+form {
+    display: flex;
+    flex: 1;
+    width: 100%;
+    padding: 10px 10px;
+    justify-content: start;
+    align-items: start;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+h4 {
+    align-self: flex-start;
+}
+
+.contenido {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    width: 100%;
+    flex-direction: row;
+    height: 100%;
+    flex-wrap: wrap;
+}
+   
+form {
+    min-width: 250px;
+}
+
+form .contenido-inputs {
+    display: block;
+    position: relative;
+    width: calc(90%);
+    height: auto;
+    margin: 8px auto;
+    padding: 30px 10px 10px;
+    flex: 1;
+}
+
+form .contenido-inputs input {
+    display: block;
+    width: 100%;
+    border-radius: 6px;
+    border: 0;
+    padding: 10px 10px;
+    font-size: 14px;
+    border: 1px solid #969696;
+    background-color: #f6f6f6;
+}
+
+form .contenido-inputs input:focus {
+    outline: none;
+    border: 1px solid #969696;
+}
+
+form .contenido-inputs label {
+    display: block;
+    position: absolute;
+    width: auto;
+    top: 14px;
+    left: 20px;
+    padding: 5px 5px;
+    font-size: 14px;
+    background-color: #f6f6f6;
+}
+
+/* Seccion de Botones Para Subir Info Oficial */
+.subirInfoBtn {
+    flex: 2;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding-left: 20px;
+    height: 100%;
+}
+
+.boton-subir {
+    background-color: #38B6FF;
+    color: black;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 70px;
+    font-weight: bold;
+}
+
+.cuadro-subir {
+    width: 100%;
+    padding: 25px 0;
+    border-style: dotted;
+    border-width: 2px;
+    border-color: #38B6FF;
+    background-color: #dedddd;
+}
+
+/* Seccion de la caja de Notificaciones */
+.cajaNotificaciones {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    border: 2px solid rgb(211, 211, 211);
+    width: 100%;
+    padding: 20px 20px;
+    border-radius: 5px;
+    flex-direction: row;
+    margin-bottom: 30px;
+    background-color: #f6f6f6;
+}
+
+.cajaNotificaciones label {
+    font-weight: bold;
+}
+
+.form-check-input {
+    border: 1px solid #969696 !important;
+}
+
+/* Boton Next */
+.next {
+    padding: 8px 70px;
+    background-color: #38B6FF;
+    color: black;
+    border-radius: 6px;
+    border: none;
+    outline: none;
+    font-weight: bold;
+}
+
+@media screen and (max-width: 620px) {
+    form {
+        border: none !important;
+    }
 }
