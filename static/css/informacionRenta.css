@@ -61,7 +61,7 @@
 /* #region INFORMACIONPAGO*/
 #informacionPago-container{
     background-color: #fff;
-    border: 2px solid var(--colorPrincipal);
+    border: 1px solid rgb(211, 211, 211);
     width: 60%;
     height: auto;
     display: flex;
