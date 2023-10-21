@@ -36,6 +36,8 @@ body, html {
     height: 50px;
 }
 
+
+
 /* Seccion de Diseño para Subir Info */
 .cajaSubirInfo {
     display: flex;
@@ -136,6 +138,15 @@ input[type=number]::-webkit-outer-spin-button {
     width: 100%;
     flex-direction: column;
 }
+
+
+
+/* Seccion de Diseño para el Mirar Info */
+/* 
+El Diseño esta en Subir Propiedad Segundo Paso (Archivo CSS)
+*/
+
+
 
 /* Seccion de Diseño para el Contacto */
 .cajaContacto {
@@ -273,6 +284,8 @@ form .contenido-inputs label {
     border: 1px solid #969696 !important;
 }
 
+
+
 /* Boton Next */
 .next {
     padding: 8px 70px;
@@ -284,6 +297,8 @@ form .contenido-inputs label {
     font-weight: bold;
 }
 
+
+/* Responsividad */
 @media screen and (max-width: 620px) {
     form {
         border: none !important;

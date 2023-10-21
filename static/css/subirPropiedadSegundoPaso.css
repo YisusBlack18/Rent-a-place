@@ -62,7 +62,7 @@
 /* #region INFORMACIONPAGO*/
 #informacionPago-container {
     background-color: #fff;
-    border: 2px solid var(--colorPrincipal);
+    border: 1px solid rgb(211, 211, 211);
     width: 80%;
     height: auto;
     display: flex;
@@ -70,7 +70,7 @@
     padding: 2rem;
     align-items: center;
     position: relative;
-    bottom: 120px;
+    bottom: 80px;
 }
 
 #textoInformacion {
@@ -91,7 +91,7 @@
 
 /* #region EXPLANATION*/
 #explanation-container {
-    border: 2px solid var(--colorPrincipal);
+    border: 1px solid rgb(211, 211, 211);
     padding: 2rem;
 }
 
