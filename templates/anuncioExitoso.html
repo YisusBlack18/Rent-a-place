@@ -16,402 +16,48 @@
     <link rel="stylesheet" href="/static/css/casaIndividual.css">
 </head>
 {% endblock %}
-{% block body%}
-    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-        <!-- Aqui esta la Barra de Progreso y sus Funcionalidades -->
-        <div class="barraProgreso">
-            <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 3px">
-                <div id="barraDeProgreso" class="progress-bar" style="width: 0%; background-color: #38B6FF !important;"></div>
-            </div>
-            <div class="cajaBotones">
-                <button class="button" onclick="subirInfo()" style="background-color: #38B6FF !important;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
-                        <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
-                    </svg>
-                </button>
-                <button class="button" onclick="mirarInfo()" id="botonMirarInfo">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                        <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                        <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                    </svg>
-                </button>
-                <button class="button" onclick="contacto()" id="botonContacto">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                        <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
-                    </svg>
-                </button>
-                <button class="button" onclick="anuncioExitoso()" id="botonAnuncioExitoso">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
-                        <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
-                    </svg>
-                </button>
-            </div>
+{% block body %}
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+    <!-- Aqui esta la Barra de Progreso y sus Funcionalidades -->
+    <div class="barraProgreso">
+        <div class="progress" role="progressbar" aria-label="Example 1px high" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="height: 3px">
+            <div id="barraDeProgreso" class="progress-bar" style="width: 0%; background-color: #38B6FF !important;"></div>
         </div>
-        <!-- Aqui esta la Pagina que se Mostrara al Subir Info de la Casa (Primer Paso) -->
-        <div id="subirInfo" style="display: flex; width: 80%; flex-direction: column;">
-            <div class="cajaSubirInfo">
-                <!-- Form para Categoria -->
-                <form class="formSubirInfo" method="POST">
-                    <h4>Categoria</h4>
-                    <div class="contenido-inputs">
-                        <label class="labelrequisito" for="alojamientoSubirInfo">Alojamiento <p class="requisito">*</p></label>
-                        <select name="alojamientoSubirInfo" id="alojamientoSubirInfo" required>
-                            <!-- AQUI VIENEN LAS OPCIONES -->
-                            <!-- <option value="casa">Casa</option>
-                            <option value="departamento">Departamento</option>
-                            <option value="cuarto">Cuarto</option> -->
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="cajaSubirInfo">
-                <div class="contenidoSubirInfo">
-                    <!-- Form para Informacion General -->
-                    <form class="formSubirInfo" method="POST">
-                        <h4>Informacion General</h4>
-                        <div class="contenido-inputs subirInfo">
-                            <label class="labelrequisito" for="tituloSubirInfo">Titulo <p class="requisito">*</p></label>
-                            <input type="text" id="tituloSubirInfo" required>
-                        </div>
-                        <div class="contenido-inputs">
-                            <label class="labelrequisito" for="explicacionSubirInfo">Explicación <p class="requisito">*</p></label>
-                            <textarea name="explicacionSubirInfo" id="explicacionSubirInfo" cols="30" rows="10" required></textarea>
-                        </div>
-                        <div style="display: flex; position: relative; width: calc(90%); height: auto; flex: 1; flex-wrap: wrap;">
-                            <div class="contenido-inputs subirInfo">
-                                <label class="labelrequisito" for="precioSubirInfo">Precio <p class="requisito">*</p></label>
-                                <input type="text" id="precioSubirInfo" required>
-                            </div>
-                            <div class="contenido-inputs subirInfo">
-                                <label class="labelrequisito" for="tipoSubirInfo">Tipo <p class="requisito">*</p></label>
-                                <select name="tipoSubirInfo" id="tipoSubirInfo" required>
-                                    <!-- AQUI VIENEN LAS OPCIONES -->
-                                    <!-- <option value="venta">Venta</option>
-                                    <option value="renta">Renta</option> -->
-                                </select>
-                            </div>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label class="labelrequisito" for="habitacionesSubirInfo">No. Habitaciones <p class="requisito">*</p></label>
-                            <input type="number" id="habitacionesSubirInfo" min="0" required>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label class="labelrequisito" for="salasSubirInfo">No. Salas <p class="requisito">*</p></label>
-                            <input type="number" id="salasSubirInfo" min="0" required>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label class="labelrequisito" for="bañosSubirInfo">No. Baños <p class="requisito">*</p></label>
-                            <input type="number" min="0" id="bañosSubirInfo">
-                        </div> 
-                        <div class="contenido-inputs subirInfo">
-                            <label class="labelrequisito" for="metrosSubirInfo">M<sup style="top: 5px;">2</sup> <p class="requisito">*</p></label>
-                            <input type="number" min="0" id="metrosSubirInfo" required>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label class="labelrequisito" for="aireAcondicionadoSubirInfo" style="color: red;">No. Aire Acondicionado <p class="requisito">*</p></label>
-                            <select name="aireAcondicionadoSubirInfo" id="aireAcondicionadoSubirInfo" required>
-                                <!-- AQUI VIENEN LAS OPCIONES -->
-                                <!-- <option value="0">0</option>
-                                <option value="1">1</option> -->
-                            </select>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label for="edadCasaSubirInfo">Edad de la Casa</label>
-                            <input type="number" min="0" id="edadCasaSubirInfo">
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label for="patioTraseroSubirInfo">Patio Trasero</label>
-                            <select name="patioTraseroSubirInfo" id="patioTraseroSubirInfo">
-                                <!-- AQUI VIENEN LAS OPCIONES -->
-                                <option value="si">Si</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label class="labelrequisito" for="wifiSubirInfo">Wifi <p class="requisito">*</p></label> 
-                            <select name="wifiSubirInfo" id="wifiSubirInfo" required>
-                                <!-- AQUI VIENEN LAS OPCIONES -->
-                                <option value="si">Si</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label for="amuebladaSubirInfo">Amueblada</label>
-                            <select name="amuebladaSubirInfo" id="amuebladaSubirInfo">
-                                <!-- AQUI VIENEN LAS OPCIONES -->
-                                <option value="si">Si</option>
-                                <option value="no">No</option>
-                            </select>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label for="estadoSubirInfo">Estado</label>
-                            <select name="estadoSubirInfo" id="estadoSubirInfo">
-                                <!-- AQUI VIENEN LAS OPCIONES -->
-                                <!-- <option value="nuevo">Nuevo</option>
-                                <option value="usado">Usado</option> -->
-                                <!-- O -->
-                                <!-- Un estado quien sabe donde o que rollo -->
-                            </select>
-                        </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label for="personasSubirInfo">No. Personas</label>
-                            <input type="number" min="0" id="personasSubirInfo">
-                        </div>
-                    </form>
-
-                </div>
-            </div>
-            <div class="cajaSubirInfo">
-                <div class="contenidoSubirInfo">
-                    <!-- Form para Informacion General -->
-                    <form class="formSubirInfo" method="POST">
-                        <h4>Informacion de Ubicación</h4>
-                        <div style="display: flex; flex-wrap: wrap;">
-                            <div class="contenido-inputs subirInfo">
-                                <label class="labelrequisito" for="zonaSubirInfo">Zona <p class="requisito">*</p></label>
-                                <select name="zonaSubirInfo" id="zonaSubirInfo" required>
-                                    <!-- AQUI VIENEN LAS OPCIONES -->
-                                </select>
-                            </div>
-                            <div class="contenido-inputs subirInfo">
-                                <label class="labelrequisito" for="coloniaSubirInfo" style="color: red;">Colonia <p class="requisito">*</p></label>
-                                <select name="coloniaSubirInfo" id="coloniaSubirInfo" required>
-                                    <!-- AQUI VIENEN LAS OPCIONES -->
-                                </select>
-                            </div>
-                            <div class="contenido-inputs subirInfo">
-                                <label class="labelrequisito" for="calleSubirInfo">Calle <p class="requisito">*</p></label>
-                                <input type="text" id="calleSubirInfo" required>
-                            </div>
-                        </div>
-                        <iframe id="mapaUbicacion" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3486.786097722649!2d-110.96479732398004!3d29.08246517542222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86ce85a066a6293b%3A0x6e5dabb78ba6fea4!2s5k%20ingenieria%20industrial%20y%20de%20sistemas!5e0!3m2!1sen!2smx!4v1695631623949!5m2!1sen!2smx" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </form>                    
-                </div>
-            </div>
-            <div class="cajaSubirInfo">
-                <div class="contenidoSubirInfo">
-                    <!-- Form para Informacion General -->
-                    <form method="POST">
-                        <h4>Subir Fotos</h4>
-                        <div class="subirFotos">
-                            <div style="margin-bottom: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center; width: 100%;">
-                                <img src="/static/img/img5-removebg-preview.png" width="80px">
-                                <h5>Puedes agregar 30 fotos a tu anuncio</h5>
-                                <div>
-                                    <button class="boton-subir">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-camera" viewBox="0 0 16 16">
-                                            <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z"/>
-                                            <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z"/>
-                                        </svg>
-                                        Subir desde la computadora
-                                    </button>
-                                </div>
-                            </div>
-                            <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-                                <button class="cuadro-subir">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16" style="color: #38B6FF;">
-                                        <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                    </svg>
-                                    <p style="color: #858585; text-align: center; margin: 0 !important;">Puedes agregar 30 fotos a tu anuncio</p>
-                                </button>
-                            </div>
-                        </div>
-                    </form>                    
-                </div>
-            </div>
-            <div style="display: flex; justify-content: center; align-items: center; margin: 40px 0px;">
-                <button class="next" id="nextSubirInfo" onclick="nextSubirInfo()">Next</button>
-            </div>
-        </div>
-
-        <!-- Aqui esta la Pagina que se Mostrara al Mirar la Info de la Casa (Segundo Paso) -->
-        <div id="mirarInfo" style="display: none;">
-            <div id="mainRentar">
-                <div id="informacionRenta-container">
-                    <div id="carouselInformacion-container">
-                        <div id="carouselExample" class="carousel slide">
-                            <div class="carousel-inner">
-                                <div class="carousel-item active">
-                                    <img src="https://axxiona.mx/hermosillo/img/entrega1.jpg" class="d-block" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/static/img/img6.jpg" class="d-block" alt="...">
-                                </div>
-                                <div class="carousel-item">
-                                    <img src="/static/img/img4.jpg" class="d-block" alt="...">
-                                </div>
-                            </div>
-                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
-                                data-bs-slide="prev">
-                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Previous</span>
-                            </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
-                                data-bs-slide="next">
-                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                <span class="visually-hidden">Next</span>
-                            </button>
-                        </div>
-            
-                        <div id="informacionPago-container">
-                            <div id="encabezadoPropiedad">
-                                <div>
-                                    <!-- Titulo de la casa -->
-                                    <h2>Información General</h2>
-                                    <p class="me-0 mb-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                            class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="color: rgb(240, 209, 32);">
-                                            <path
-                                                d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
-                                        </svg>
-                                        <!-- Ubicacion de la casa -->
-                                        Ubicacion
-                                    </p>
-                                </div>
-                                <!-- Precio de la casa -->
-                                <div>
-                                    <h3>$500000</h3>
-                                </div>
-                            </div>
-            
-                            <div id="textoInformacion">
-                                <div class="textoInformacion-subcontainer">
-                                    <div class="tamanoTexto textoInformacion-izquierda">
-                                        <p class="me-0 text-secondary">Anuncio No.</p>
-                                        <p class="me-0 text-secondary">Fecha de publicación</p>
-                                        <p class="me-0 text-secondary">Forma de vivienda</p>
-                                        <p class="me-0 text-secondary">No. de cuartos</p>
-                                        <p class="me-0 text-secondary">M<sup>2</sup></p>
-                                        <p class="me-0 text-secondary">Años de la casa</p>
-                                    </div>
-                                    <div class="tamanoTexto textoInformacion-derecha">
-                                        <p class="me-0 text-danger">O-1234</p>
-                                        <p class="me-0">26 - Noviembre - 2020</p>
-                                        <p class="me-0">Casa</p>
-                                        <p class="me-0">2</p>
-                                        <p class="me-0">150M2 / 135M2</p>
-                                        <p class="me-0">5</p>
-                                    </div>
-                                </div>
-                                <div class="textoInformacion-subcontainer textoGap">
-                                    <div class="tamanoTexto textoInformacion-izquierda">
-                                        <p class="me-0 text-secondary">Amueblada</p>
-                                        <p class="me-0 text-secondary">Baños</p>
-                                        <p class="me-0 text-secondary">Cochera</p>
-                                        <p class="me-0 text-secondary">WiFi</p>
-                                        <p class="me-0 text-secondary">Television</p>
-                                        <p class="me-0 text-secondary">Refrigerada</p>
-                                    </div>
-                                    <div class="tamanoTexto textoInformacion-derecha">
-                                        <p class="me-0">Si</p>
-                                        <p class="me-0">2</p>
-                                        <p class="me-0">2 carros</p>
-                                        <p class="me-0">Si</p>
-                                        <p class="me-0">Si</p>
-                                        <p class="me-0">Si</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            
-                    </div>
-            
-                    <div id="explanation-container">
-                        <h4>Explicación</h4>
-                        <p class="me-0 mb-0 text-secondary" style="text-align: justify;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, neque
-                            laudantium minus animi adipisci facilis expedita inventore laboriosam quasi vitae in magnam, laborum ad
-                            quia vero repellat debitis voluptatem excepturi?</p>
-                    </div>
-                    <div style="display: flex; justify-content: center; align-items: center; margin: 30px 0;">
-                        <button class="next" id="nextMirarInfo" onclick="nextMirarInfo()">Next</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Aqui esta la Pagina que se Mostrara al Subir Info de Contacto (Tercer Paso) -->
-        <div id="contacto" style="display: none;">
-            <div style="width: 100%; text-align: left; color: rgb(153, 153, 153); margin-top: 30px;">
-                <h4>Contacto</h4>
-            </div>
-            <div class="cajaContacto">
-                <div class="contenido">
-                    <form action="POST" style="border-right: 1px solid rgb(211, 211, 211);">
-                        <h4>Contacto</h4>
-                        <div class="contenido-inputs">
-                            <label for="nombreContacto">Nombre</label>
-                            <input type="text" id="nombreContacto" required>
-                        </div>
-                        <div class="contenido-inputs">
-                            <label for="emailContacto">E-mail</label>
-                            <input type="email" id="emailContacto" required>
-                        </div>
-                        <div class="contenido-inputs">
-                            <label for="celularContacto">Numero de Celular</label>
-                            <input type="text" id="celularContacto" required>
-                        </div>
-                        <div class="contenido-inputs">
-                            <label for="telefonoContacto">Telefono</label>
-                            <input type="text" id="telefonoContacto" required>
-                        </div>
-                        <div class="contenido-inputs">
-                            <label for="redSocialContacto">Red Social</label>
-                            <input type="text" id="redSocialContacto" required>
-                        </div>
-                    </form>
-                    <div class="subirInfoBtn">
-                        <div style="margin-bottom: 25px; display: flex; justify-content: center; align-items: center; flex-direction: column; text-align: center;">
-                            <h5>Subir Identificación Oficial</h5>
-                            <div>
-                                <button class="boton-subir">Subir</button>
-                            </div>
-                        </div>
-                        <div style="display: flex; justify-content: center; align-items: center; width: 100%;">
-                            <button class="cuadro-subir">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-plus" viewBox="0 0 16 16" style="color: #38B6FF;">
-                                    <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
-                                </svg>
-                                <p style="color: #858585; text-align: center; margin: 0 !important;">Agregar Información Oficial</p>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Cuadro Separado, Notificaciones -->
-            <div style="width: 100%; text-align: left; color: rgb(153, 153, 153); margin-top: 30px;">
-                <h4>Notificaciones</h4>
-            </div>
-            <div class="cajaNotificaciones">
-                <div>
-                    <p style="text-align: justify;">Quiero estar informado de todos los anuncios y campañas a través de correo electronico comercial</p>
-                </div>
-                <div>
-                    <div class="form-check form-switch">
-                        <label class="form-check-label" for="flexSwitchCheckChecked1">E-mail</label>
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked1">
-                    </div>
-                    <div class="form-check form-switch">
-                        <label class="form-check-label" for="flexSwitchCheckChecked2">SMS</label>
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked2">
-                    </div>
-                </div>
-            </div>
-            <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
-                <button class="next" id="nextContacto" onclick="nextContacto()">Next</button>
-            </div>
-        </div>
-
-        <!-- Aqui esta la Pagina que se Mostrara al Anunciar la Casa Exitosamente (Cuarto Paso) -->
-        <div id="anuncioExitoso" style="display: none; width: 100%;">
-            <div style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
-                <img src="/static/img/img3-removebg-preview.png" alt="" width="100px">
-            </div>
-            <div style="text-align: center;">
-                <p>Su anuncio ha sido enviado exitosamente.</p> 
-                <p>Sera revisado y aprobado por uno de nuestros trabajadores.</p>
-                <p style="margin-top: 35px;">¡Gracias!</p>
-            </div>
+        <div class="cajaBotones">
+            <button class="button" style="background-color: #38B6FF !important;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
+                    <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z"/>
+                </svg>
+            </button>
+            <button class="button" id="botonMirarInfo">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                    <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                    <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                </svg>
+            </button>
+            <button class="button" id="botonContacto">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                </svg>
+            </button>
+            <button class="button" id="botonAnuncioExitoso">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 16 16">
+                    <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+                </svg>
+            </button>
         </div>
     </div>
+    <!-- Aqui esta la Pagina que se Mostrara al Anunciar la Casa Exitosamente (Cuarto Paso) -->
+    <div id="anuncioExitoso" style="display: none; width: 100%;">
+        <div style="display: flex; justify-content: center; align-items: center; margin-top: 30px;">
+            <img src="/static/img/img3-removebg-preview.png" alt="" width="100px">
+        </div>
+        <div style="text-align: center;">
+            <p>Su anuncio ha sido enviado exitosamente.</p> 
+            <p>Sera revisado y aprobado por uno de nuestros trabajadores.</p>
+            <p style="margin-top: 35px;">¡Gracias!</p>
+        </div>
+    </div>
+</div>
 {% endblock %}
 </html>

@@ -1,6 +1,7 @@
 import os
 from flask import Flask, redirect, render_template, request, session, url_for
 from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_valores_base
+from solicitudes_aprobacion import registrar_anuncio
 
 from usuarios import obtener_dict_usuario, validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono
 
@@ -163,7 +164,43 @@ def rentasPrevias(propiedad='lista'):
 
 @app.route('/anunciar', methods=['GET', 'POST'])
 def anunciar():
-    return render_template('anuncioExitoso.html')
+    if request.method == 'GET':
+        return render_template('subirPropiedad.html')
+    elif request.method == 'POST':
+        if 'email' in session:
+            email = session['email']
+        categoria = request.form['alojamientoSubirInfo']
+        titulo = request.form['tituloSubirInfo']
+        explicacion = request.form['explicacionSubirInfo']
+        precio = request.form['precioSubirInfo']
+        habitaciones = request.form['habitacionesSubirInfo']
+        salas = request.form['salasSubirInfo']
+        banos = request.form['bañosSubirInfo']
+        metros = request.form['metrosSubirInfo']
+        edad = request.form['edadCasaSubirInfo']
+        acondicionado = request.form['aireAcondicionadoSubirInfo']
+        wifi = request.form['wifiSubirInfo']
+        television = request.form['televisionSubirInfo']
+        amueblada = request.form['amuebladaSubirInfo']
+        cochera = request.form['cocheraSubirInfo']
+        estado = request.form['estadoSubirInfo']
+        personas = request.form['personasSubirInfo']
+        zona = request.form['zonaSubirInfo']
+        colonia = request.form['coloniaSubirInfo']
+        calle = request.form['calleSubirInfo']
+        mapa = request.form['mapaUbicacion']
+        fotoPropiedad = request.form['imagenPropiedad']
+        nombreContacto = request.form['nombreContacto']
+        emailContacto = request.form['emailContacto']
+        telefonoContacto = request.form['telefonoContacto']
+        redSocialContacto = request.form['redSocialContacto']
+        fotoContacto = request.form['fotoContacto']
+        documentosContacto = request.form['documentosContacto']
+
+        registrar_anuncio(categoria,titulo,explicacion,precio,habitaciones,salas,banos,metros,edad,acondicionado,wifi,television,amueblada,cochera,estado,personas,
+                          zona,colonia,calle,mapa,fotoPropiedad,nombreContacto,emailContacto,telefonoContacto,redSocialContacto,fotoContacto,documentosContacto)
+        
+        return render_template('anuncioExitoso.html')
 
 @app.route('/rentar', methods=['GET','POST'])
 def rentar():
@@ -172,10 +209,6 @@ def rentar():
 @app.route('/pagar', methods=['GET', 'POST'])
 def pagar():
     return render_template('pagoRenta.html')
-
-@app.route('/subirPropiedadSegundoPaso', methods=['GET', 'POST'])
-def subirSegundo():
-    return render_template('subirPropiedadSegundoPaso.html')
 
 if __name__ == "__main__":
     app.run(debug=True)

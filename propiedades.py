@@ -111,6 +111,8 @@ def obtener_valores_base():
         c.execute("SELECT DISTINCT FechaCreacion FROM propiedades")
         rows = c.fetchall()
         agrega_dict_valores(dict_valores,'fechas',rows)
+        c.execute("SELECT DISTINCT Categoria FROM propiedades")
+        agrega_dict_valores(dict_valores,'categorias',rows)
         conn.close()
         return dict_valores
     except Error as err:
