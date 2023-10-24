@@ -1,0 +1,11 @@
+REST Api(Sandbox):
+    Client ID: ARGgBCTe1rJI2KzZXs51EnDf6H75mOpkV4TRYGOqixerKn-zggHH4C8C9HRZBSkaAym3Bdr90NvhiBta
+    Secret: ARGgBCTe1rJI2KzZXs51EnDf6H75mOpkV4TRYGOqixerKn-zggHH4C8C9HRZBSkaAym3Bdr90NvhiBta
+
+Cuentas sandbox.paypal.com
+Cuenta de la Empresa:
+    Email: sb-6vyfa27893529@business.example.com
+    Password: L='7E1.f
+Cuenta del cliente:
+    Email: sb-e76y127898551@personal.example.com
+    Password: Yp$@@Y.4

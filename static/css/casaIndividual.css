@@ -217,6 +217,13 @@ input[type=date]:focus, input[type=number]:focus {
 
 /* #endregion USUARIO*/
 
+#paypal-button-container{
+    margin: auto;
+    width: 50%;
+    padding: 10px;
+
+}
+
 @media screen and (max-width: 992px ) {
     #container-casa{
         flex-direction: column;
