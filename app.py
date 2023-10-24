@@ -165,44 +165,82 @@ def rentasPrevias(propiedad='lista'):
         return render_template('rentasPrevias.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
 
 @app.route('/anunciar', methods=['GET', 'POST'])
-def anunciar():
+@app.route('/anunciar/<resultado>', methods=['GET', 'POST'])
+def anunciar(resultado='anuncio'):
     if request.method == 'GET':
-        return render_template('subirPropiedad.html')
+        if resultado == 'exito':
+            return render_template('anuncioExitoso.html')
+        else:
+            return render_template('subirPropiedad.html')
     elif request.method == 'POST':
         if 'email' in session:
             email = session['email']
-        categoria = request.form['alojamientoSubirInfo']
-        titulo = request.form['tituloSubirInfo']
-        explicacion = request.form['explicacionSubirInfo']
-        precio = request.form['precioSubirInfo']
-        habitaciones = request.form['habitacionesSubirInfo']
-        salas = request.form['salasSubirInfo']
-        banos = request.form['bañosSubirInfo']
-        metros = request.form['metrosSubirInfo']
-        edad = request.form['edadCasaSubirInfo']
-        acondicionado = request.form['aireAcondicionadoSubirInfo']
-        wifi = request.form['wifiSubirInfo']
-        television = request.form['televisionSubirInfo']
-        amueblada = request.form['amuebladaSubirInfo']
-        cochera = request.form['cocheraSubirInfo']
-        estado = request.form['estadoSubirInfo']
-        personas = request.form['personasSubirInfo']
-        zona = request.form['zonaSubirInfo']
-        colonia = request.form['coloniaSubirInfo']
-        calle = request.form['calleSubirInfo']
-        mapa = request.form['mapaUbicacion']
-        fotoPropiedad = request.form['imagenPropiedad']
-        nombreContacto = request.form['nombreContacto']
-        emailContacto = request.form['emailContacto']
-        telefonoContacto = request.form['telefonoContacto']
-        redSocialContacto = request.form['redSocialContacto']
-        fotoContacto = request.form['fotoContacto']
-        documentosContacto = request.form['documentosContacto']
-
-        registrar_anuncio(categoria,titulo,explicacion,precio,habitaciones,salas,banos,metros,edad,acondicionado,wifi,television,amueblada,cochera,estado,personas,
-                          zona,colonia,calle,mapa,fotoPropiedad,nombreContacto,emailContacto,telefonoContacto,redSocialContacto,fotoContacto,documentosContacto)
         
-        return render_template('anuncioExitoso.html')
+        data = request.get_json()
+        categoria = data['alojamiento']
+        titulo = data['titulo']
+        explicacion = data['explicacion']
+        precio = data['precio']
+        habitaciones = data['habitaciones']
+        salas = data['salas']
+        banos = data['banos']
+        metros = data['metros']
+        edad = data['edadCasa']
+        acondicionado = data['aireAcondicionado']
+        wifi = data['wifi']
+        television = data['television']
+        amueblada = data['amueblada']
+        cochera = data['cochera']
+        estado = data['estado']
+        personas = data['personas']
+        zona = data['zona']
+        colonia = data['colonia']
+        calle = data['calle']
+        mapa = data['mapaUbicacion']
+        fotoPropiedad = data['imagenPropiedad']
+        nombreContacto = data['nombreContacto']
+        emailContacto = data['emailContacto']
+        telefonoContacto = data['telefonoContacto']
+        redSocialContacto = data['redSocialContacto']
+        fotoContacto = data['fotoContacto']
+        documentosContacto = data['documentosContacto']
+
+        # categoria = request.form['alojamientoSubirInfo']
+        # titulo = request.form['tituloSubirInfo']
+        # explicacion = request.form['explicacionSubirInfo']
+        # precio = request.form['precioSubirInfo']
+        # habitaciones = request.form['habitacionesSubirInfo']
+        # salas = request.form['salasSubirInfo']
+        # banos = request.form['bañosSubirInfo']
+        # metros = request.form['metrosSubirInfo']
+        # edad = request.form['edadCasaSubirInfo']
+        # acondicionado = request.form['aireAcondicionadoSubirInfo']
+        # wifi = request.form['wifiSubirInfo']
+        # television = request.form['televisionSubirInfo']
+        # amueblada = request.form['amuebladaSubirInfo']
+        # cochera = request.form['cocheraSubirInfo']
+        # estado = request.form['estadoSubirInfo']
+        # personas = request.form['personasSubirInfo']
+        # zona = request.form['zonaSubirInfo']
+        # colonia = request.form['coloniaSubirInfo']
+        # calle = request.form['calleSubirInfo']
+        # mapa = request.form['mapaUbicacion']
+        # fotoPropiedad = request.form['imagenPropiedad']
+        # nombreContacto = request.form['nombreContacto']
+        # emailContacto = request.form['emailContacto']
+        # telefonoContacto = request.form['telefonoContacto']
+        # redSocialContacto = request.form['redSocialContacto']
+        # fotoContacto = request.form['fotoContacto']
+        # documentosContacto = request.form['documentosContacto']
+
+        if registrar_anuncio(categoria,titulo,explicacion,precio,habitaciones,salas,banos,metros,edad,acondicionado,wifi,television,amueblada,cochera,estado,personas,
+                          zona,colonia,calle,mapa,fotoPropiedad,nombreContacto,emailContacto,telefonoContacto,redSocialContacto,fotoContacto,documentosContacto):
+            redirect(url_for('anunciar', resultado='exito'))
+            render_template('anuncioExitoso.html')
+        else:
+            return render_template('subirPropiedad.html', error='Registro fallo, Servicio no disponible, intente mas tarde')
+
+@app.route('/anuncioExistoso', methods=['GET', 'POST'])
 
 @app.route('/rentar', methods=['GET','POST'])
 @app.route('/rentar/<propiedad>', methods=['GET','POST'])
