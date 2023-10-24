@@ -156,20 +156,100 @@ function nextSubirInfo() {
     mirarInfo();
 }
 
+function nextMirarInfo() {
+    contacto();
+}
+
 function nextContacto() {
     // Variables para los inputs
     var nombreContacto = document.getElementById("nombreContacto");
     var emailContacto = document.getElementById("emailContacto");
-    var celularContacto = document.getElementById("celularContacto");
     var telefonoContacto = document.getElementById("telefonoContacto");
     var redSocialContacto = document.getElementById("redSocialContacto");
 
     // Variables de Valores
     var nombreContactoValue = nombreContacto.value;
     var emailContactoValue = emailContacto.value;
-    var celularContactoValue = celularContacto.value;
     var telefonoContactoValue = telefonoContacto.value;
     var redSocialContactoValue = redSocialContacto.value;
 
-    anuncioExitoso();
+}
+
+function sendData() {
+    var alojamientoSubirInfoValue = document.getElementById("alojamientoSubirInfo").value;
+    var tituloSubirInfoValue = document.getElementById("tituloSubirInfo").value;
+    var explicacionSubirInfoValue = document.getElementById("explicacionSubirInfo").value;
+    var precioSubirInfoValue = document.getElementById("precioSubirInfo").value;
+    var habitacionesSubirInfoValue = document.getElementById("habitacionesSubirInfo").value;
+    var salasSubirInfoValue = document.getElementById("salasSubirInfo").value;
+    var bañosSubirInfoValue = document.getElementById("bañosSubirInfo").value;
+    var metrosSubirInfoValue = document.getElementById("metrosSubirInfo").value;
+    var edadCasaSubirInfoValue = document.getElementById("edadCasaSubirInfo").value;
+    var cocheraSubirInfoValue = document.getElementById("cocheraSubirInfo").value;
+    var wifiSubirInfoValue = document.getElementById("wifiSubirInfo").value;
+    var televisionSubirInfoValue = document.getElementById("televisionSubirInfo").value;
+    var amuebladaSubirInfoValue = document.getElementById("amuebladaSubirInfo").value;
+    var aireAcondicionadoSubirInfoValue = document.getElementById("aireAcondicionadoSubirInfo").value;
+    var estadoSubirInfoValue = document.getElementById("estadoSubirInfo").value;
+    var personasSubirInfoValue = document.getElementById("personasSubirInfo").value;
+    var zonaSubirInfoValue = document.getElementById("zonaSubirInfo").value;
+    var coloniaSubirInfoValue = document.getElementById("coloniaSubirInfo").value;
+    var calleSubirInfoValue = document.getElementById("calleSubirInfo").value;
+    var mapaUbicacionValue = document.getElementById("mapaUbicacion").getAttribute("src");
+    var imagenPropiedadValue = document.getElementById("imagenPropiedad").value;
+
+    var nombreContactoValue = document.getElementById("nombreContacto").value;
+    var emailContactoValue = document.getElementById("emailContacto").value;
+    var telefonoContactoValue = document.getElementById("telefonoContacto").value;
+    var redSocialContactoValue = document.getElementById("redSocialContacto").value;
+
+    var fotoContactoValue = document.getElementById("fotoContacto").value;
+    var documentosContactoValue = document.getElementById("documentosContacto").value;
+
+    var data = {
+        alojamiento: alojamientoSubirInfoValue,
+        titulo: tituloSubirInfoValue,
+        explicacion: explicacionSubirInfoValue,
+        precio: precioSubirInfoValue,
+        habitaciones: habitacionesSubirInfoValue,
+        salas: salasSubirInfoValue,
+        banos: bañosSubirInfoValue,
+        metros: metrosSubirInfoValue,
+        edadCasa: edadCasaSubirInfoValue,
+        cochera: cocheraSubirInfoValue,
+        wifi: wifiSubirInfoValue,
+        television: televisionSubirInfoValue,
+        amueblada: amuebladaSubirInfoValue,
+        aireAcondicionado: aireAcondicionadoSubirInfoValue,
+        estado: estadoSubirInfoValue,
+        personas: personasSubirInfoValue,
+        zona: zonaSubirInfoValue,
+        colonia: coloniaSubirInfoValue,
+        calle: calleSubirInfoValue,
+        mapaUbicacion: mapaUbicacionValue,
+        imagenPropiedad: imagenPropiedadValue,
+        nombreContacto: nombreContactoValue,
+        emailContacto: emailContactoValue,
+        telefonoContacto: telefonoContactoValue,
+        redSocialContacto: redSocialContactoValue,
+        fotoContacto: fotoContactoValue,
+        documentosContacto: documentosContactoValue
+    };
+
+    // Realiza una solicitud AJAX (POST) para enviar los datos a tu aplicación Flask
+    fetch('/anunciar', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Maneja la respuesta de tu aplicación Flask aquí
+        console.log(data);
+    })
+    .catch(error => {
+        console.error('Error al enviar datos:', error);
+    });
 }

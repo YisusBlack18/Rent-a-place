@@ -6,8 +6,7 @@ def registrar_anuncio(categoria,titulo,explicacion,precio,habitaciones,salas,ban
         conn = crear_conexion()
         c = conn.cursor()
         direccion = calle + ", " + colonia
-        c.execute(f"INSERT INTO solicitud_anuncio (Categoria,Titulo,Descripcion,Precio,NoHabitaciones,NoSalas,NoBanios,Metros2,Antiguedad,Refrigeradora,WIFI,Television,Amueblada,Cochera,Estado,NoPersonas,ZonaEstado,Direccion,UrlMapa,Fotos,nombre,email,telefono,redSocial,imagen,documentos) 
-                  VALUES ('{categoria}','{titulo}','{explicacion}','{precio}','{habitaciones}','{salas}','{banos}','{metros}','{edad}','{acondicionado}','{wifi}','{television}','{amueblada}','{cochera}','{estado}','{personas}','{zona}','{direccion}','{mapa}','{fotoPropiedad}','{nombreContacto}','{emailContacto}','{telefonoContacto}','{redSocialContacto}','{fotoContacto}','{documentosContacto}')")
+        c.execute(f"INSERT INTO solicitudes_anuncio (Categoria,Titulo,Descripcion,Precio,NoHabitaciones,NoSalas,NoBanios,Metros2,Antiguedad,Refrigeradora,WIFI,Television,Amueblada,Cochera,Estado,NoPersonas,ZonaEstado,Direccion,UrlMapa,Fotos,nombre,email,telefono,redSocial,imagen,documentos) VALUES ('{categoria}','{titulo}','{explicacion}','{precio}','{habitaciones}','{salas}','{banos}','{metros}','{edad}','{acondicionado}','{wifi}','{television}','{amueblada}','{cochera}','{estado}','{personas}','{zona}','{direccion}','{mapa}','{fotoPropiedad}','{nombreContacto}','{emailContacto}','{telefonoContacto}','{redSocialContacto}','{fotoContacto}','{documentosContacto}')")
         conn.commit()
         conn.close()
         return True
