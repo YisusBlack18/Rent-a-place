@@ -27,7 +27,7 @@
         <div id="encabezadoPropiedad">
             <div>
                 <!-- Titulo de la casa -->
-                <h2>Casa 1</h2>
+                <h2 id="titulo">{{propiedad.Titulo}}</h2>
                 <p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="color: rgb(240, 209, 32);">
@@ -35,12 +35,12 @@
                             d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                     </svg>
                     <!-- Ubicacion de la casa -->
-                    Ubicacion
+                    <span id="direccion">{{propiedad.Direccion}}</span>
                 </p>
             </div>
             <!-- Precio de la casa -->
             <div>
-                <h3>$500000</h3>
+                <h3 id="precio">${{propiedad.Precio}}</h3>
             </div>
         </div>
 
@@ -48,7 +48,7 @@
             <div id="carouselExample" class="carousel slide">
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img src="https://axxiona.mx/hermosillo/img/entrega1.jpg" class="d-block" alt="...">
+                        <img src="{{propiedad.Fotos}}" class="d-block" alt="...">
                     </div>
                     <div class="carousel-item">
                         <img src="/static/img/img6.jpg" class="d-block" alt="...">
@@ -78,14 +78,14 @@
                         <p class="me-0 text-secondary">Total a pagar</p>
                     </div>
                     <div id="textoInformacion-derecha" class="tamanoTexto">
-                        <p class="me-0" style="font-weight: bold;">20 - Noviembre - 2023</p>
-                        <p class="me-0" style="font-weight: bold;">23 - Noviembre - 2023</p>
-                        <p class="me-0" style="font-weight: bold;">$12000</p>
-                        <p class="me-0" style="font-weight: bold;">5</p>
-                        <p class="me-0 text-success" style="font-weight: bold;">$16500</p>
+                        <p class="me-0" style="font-weight: bold;" id="llegad">{{llegada.strftime('%Y-%m-%d')}}</p>
+                        <p class="me-0" style="font-weight: bold;" id = "salida">{{salida.strftime('%Y-%m-%d')}}</p>
+                        <p class="me-0" style="font-weight: bold;" id="subtotal">${{propiedad.Precio}}</p>
+                        <p class="me-0" style="font-weight: bold;" id="huespedes">{{huespedes}}</p>
+                        <p class="me-0 text-success" style="font-weight: bold;" id="total"><span id="total"></span></p>
                     </div>
                 </div>
-                <button id="botonPagar" class="bg-success">
+                <button id="botonPagar" class="bg-success" onclick="irPagar()">
                     Pagar
                 </button>
             </div>
@@ -95,6 +95,16 @@
     </div>
 </div>
 
+<script>
+    const total = parseFloat('{{propiedad.Precio}}') + (parseFloat('{{huespedes}}') * 900);
+
+    document.getElementById('total').textContent = '$' + total.toFixed(2);
+
+    function irPagar(){
+        sessionStorage.setItem('totalPagar', total);
+        window.location.href = "{{ url_for('pagar') }}/{{propiedad.ID}}";
+    }
+</script>
 
 {% endblock %}
 

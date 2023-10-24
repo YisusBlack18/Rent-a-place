@@ -23,7 +23,7 @@
         <div style="display: flex; justify-content: space-between;">
             <div>
                 <!-- Titulo de la casa -->
-                <h2>{{propiedad.Titulo}}</h2>
+                <h2 id="titulo">{{propiedad.Titulo}}</h2>
                 <p>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                         class="bi bi-geo-alt-fill" viewBox="0 0 16 16" style="color: rgb(240, 209, 32);">
@@ -31,12 +31,12 @@
                             d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
                     </svg>
                     <!-- Ubicacion de la casa -->
-                    {{propiedad.Direccion}}
+                    <span id="direccion">{{propiedad.Direccion}}</span>
                 </p>
             </div>
             <!-- Precio de la casa -->
             <div>
-                <h3>${{propiedad.Precio}}</h3>
+                <h3 id="precio">${{propiedad.Precio}}</h3>
             </div>
         </div>
         <!-- Este es el carrucel de fotos de la casa -->
@@ -164,16 +164,34 @@
 
         </div>
         <!-- Seccion de la reservacion, num huespedes, llegada, salida, y boton -->
-        <div class="reservacion">
-            <input type="number" name="" id="" placeholder="No. Huespedes">
-            <label for="">Llegada</label>
-            <input type="date" name="" id="" placeholder="Llegada">
-            <label for="">Salida</label>
-            <input type="date" name="" id="" placeholder="Salida">
-            <input class="reservar" type="submit" value="Reservar" name="reservar" id="reservar">
-        </div>
+        <form id="formReservacion" action="{{ url_for('rentar') }}/{{propiedad.ID}}" method="POST">
+            <div class="reservacion">
+                <input type="number" name="huespedes" id="huespedes" placeholder="No. Huespedes" required>
+                <label for="">Llegada</label>
+                <input type="date" name="llegada"  id="llegada" placeholder="Llegada" required>
+                <label for="">Salida</label>
+                <input type="date" name="salida" id="salida" placeholder="Salida" required>
+                <input class="reservar" type="submit" name="reservar" id="reservar">
+            </div>
+        </form>
     </div>
 </div>
+
+<script>
+    const form = document.getElementById('formReservacion');
+
+    form.addEventListener('submit', function(e){
+        const llegadaValor = llegada.value;
+        const salidaValor = salida.value;
+
+        if(Date.parse(llegadaValor) > Date.parse(salidaValor)){
+            e.preventDefault();
+
+            alert("La fecha de salida debe ser depues del de llegada")
+            window.location.href = "{{ url_for('propiedades') }}/{{propiedad.ID}}";
+        }
+    })
+</script>
 {% endblock %}
 
 </html>

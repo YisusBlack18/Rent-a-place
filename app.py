@@ -1,9 +1,11 @@
 import os
 from flask import Flask, redirect, render_template, request, session, url_for
 from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_valores_base
+from rentas import insertar_renta
+from datetime import datetime
 from solicitudes_aprobacion import registrar_anuncio
 
-from usuarios import obtener_dict_usuario, validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono
+from usuarios import obtener_dict_usuario, validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono, obtener_idusuario_por_email
 
 app = Flask(__name__)
 app.secret_key = os.urandom(24)
@@ -203,12 +205,41 @@ def anunciar():
         return render_template('anuncioExitoso.html')
 
 @app.route('/rentar', methods=['GET','POST'])
-def rentar():
-    return render_template('informacionRenta.html')
+@app.route('/rentar/<propiedad>', methods=['GET','POST'])
+def rentar(propiedad='lista'):
+    propiedad = obtener_dict_propiedades()[int(propiedad)]
+    dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
+
+    huespedes = request.form['huespedes']
+    llegada= datetime.strptime(request.form['llegada'], '%Y-%m-%d')
+    salida = datetime.strptime(request.form['salida'], '%Y-%m-%d')
+    session['huespedes'] = huespedes
+    session['llegada'] = llegada
+    session['salida'] = salida
+    if 'email' in session:
+        email = session['email']
+        return render_template('informacionRenta.html', propiedad=propiedad, dueno=dueno, email=email, huespedes=huespedes, llegada=llegada, salida=salida)
+    else:
+        return redirect(url_for('login'))
+
 
 @app.route('/pagar', methods=['GET', 'POST'])
-def pagar():
-    return render_template('pagoRenta.html')
+@app.route('/pagar/<propiedad>', methods=['GET', 'POST'])
+@app.route('/pagar/<propiedad>/<rentado>', methods=['GET', 'POST'])
+def pagar(propiedad='lista', rentado=False):
+    id_propiedad = int(propiedad)
+    propiedad = obtener_dict_propiedades()[int(propiedad)]
+    email = session['email']
+    id= obtener_idusuario_por_email(email)
+    huespedes = session['huespedes']
+    llegada = session['llegada']
+    salida = session['salida']
+    if(rentado==False):
+        return render_template('pagoRenta.html', propiedad=propiedad, rentado=rentado, email=email)
+    else:
+        insertar_renta(huespedes,llegada,salida,id[0][0],id_propiedad)
+        return render_template('pagoRenta.html', email=email, propiedad = propiedad, huespedes=huespedes, llegada=llegada,salida=salida)
+
 
 if __name__ == "__main__":
     app.run(debug=True)
