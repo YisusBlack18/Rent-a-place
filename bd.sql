@@ -1,4 +1,5 @@
 CREATE DATABASE IF NOT EXISTS rentaplace;
+CREATE DATABASE IF NOT EXISTS rentaplace;
 
 CREATE TABLE usuarios (
     id INT NOT NULL AUTO_INCREMENT,
@@ -84,3 +85,14 @@ CREATE TABLE solicitudes_anuncio (
     documentos TEXT,
     PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE rentas (
+  renta_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  huespedes INT NOT NULL,
+  llegada DATE NOT NULL,
+  salida DATE NOT NULL,
+  cliente_id INT ,
+  propiedad_id INT ,
+  FOREIGN KEY(cliente_id) REFERENCES usuarios(id) ON DELETE SET NULL,
+  FOREIGN KEY(propiedad_id) REFERENCES propiedades(ID) ON DELETE SET NULL
+);

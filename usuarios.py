@@ -107,6 +107,18 @@ def crea_dict_usuario(id):
 def obtener_dict_usuario(id):
     return crea_dict_usuario(id)
 
+def obtener_idusuario_por_email(email):
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("SELECT id FROM usuarios WHERE email = '{}'".format(email))
+        rows = c.fetchall()
+        conn.close()
+        return rows
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
+
 def crear_conexion():
     return crear_conexion_local()
 
