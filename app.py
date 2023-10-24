@@ -1,9 +1,9 @@
 import os
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, json, jsonify, redirect, render_template, request, session, url_for
 from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_valores_base
 from rentas import insertar_renta
 from datetime import datetime
-from solicitudes_aprobacion import registrar_anuncio
+from solicitudes_aprobacion import guarda_archivos_local, registrar_anuncio
 
 from usuarios import obtener_dict_usuario, validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono, obtener_idusuario_por_email
 
@@ -176,7 +176,7 @@ def anunciar(resultado='anuncio'):
         if 'email' in session:
             email = session['email']
         
-        data = request.get_json()
+        data = request.form
         categoria = data['alojamiento']
         titulo = data['titulo']
         explicacion = data['explicacion']
@@ -197,13 +197,15 @@ def anunciar(resultado='anuncio'):
         colonia = data['colonia']
         calle = data['calle']
         mapa = data['mapaUbicacion']
-        fotoPropiedad = data['imagenPropiedad']
+        fotoPropiedad = request.files['imagenPropiedad']
         nombreContacto = data['nombreContacto']
         emailContacto = data['emailContacto']
         telefonoContacto = data['telefonoContacto']
         redSocialContacto = data['redSocialContacto']
-        fotoContacto = data['fotoContacto']
-        documentosContacto = data['documentosContacto']
+        # fotoContacto = data['fotoContacto']
+        fotoContacto = request.files['fotoContacto']
+        # documentosContacto = data['documentosContacto']
+        documentosContacto = request.files['documentosContacto']
 
         # categoria = request.form['alojamientoSubirInfo']
         # titulo = request.form['tituloSubirInfo']
@@ -233,10 +235,13 @@ def anunciar(resultado='anuncio'):
         # fotoContacto = request.form['fotoContacto']
         # documentosContacto = request.form['documentosContacto']
 
+        guarda_archivos_local(fotoPropiedad)
+        guarda_archivos_local(fotoContacto)
+        guarda_archivos_local(documentosContacto)
+
         if registrar_anuncio(categoria,titulo,explicacion,precio,habitaciones,salas,banos,metros,edad,acondicionado,wifi,television,amueblada,cochera,estado,personas,
-                          zona,colonia,calle,mapa,fotoPropiedad,nombreContacto,emailContacto,telefonoContacto,redSocialContacto,fotoContacto,documentosContacto):
-            redirect(url_for('anunciar', resultado='exito'))
-            render_template('anuncioExitoso.html')
+                          zona,colonia,calle,mapa,fotoPropiedad.filename,nombreContacto,emailContacto,telefonoContacto,redSocialContacto,fotoContacto.filename,documentosContacto.filename):
+            return redirect(url_for('anunciar', resultado='exito'))
         else:
             return render_template('subirPropiedad.html', error='Registro fallo, Servicio no disponible, intente mas tarde')
 

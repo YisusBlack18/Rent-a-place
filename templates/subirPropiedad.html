@@ -218,7 +218,7 @@
                                         <path d="M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z"/>
                                     </svg>
                                     <p style="color: #858585; text-align: center; margin: 0 !important;">Puedes agregar 30 fotos a tu anuncio</p>
-                                    <input type="file" name="imagenPropiedad" id="imagenPropiedad" accept="image/*" multiple>
+                                    <input type="file" name="imagenPropiedad" id="imagenPropiedad" accept="image/*">
                                 </button>
                             </div>
                         </div>
@@ -396,7 +396,7 @@
                 </div>
             </div>
             <div style="display: flex; justify-content: center; align-items: center; margin-bottom: 30px;">
-                <button class="next" id="nextContacto" onclick="sendData()" type="submit" value="anunciar">Finalizar</button>
+                <button class="next" id="nextContacto" onclick="validateData()" type="submit" value="anunciar">Finalizar</button>
             </div>
         </div>
 
