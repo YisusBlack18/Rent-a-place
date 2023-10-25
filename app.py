@@ -1,7 +1,7 @@
 import os
 from flask import Flask, json, jsonify, redirect, render_template, request, session, url_for
 from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_valores_base
-from rentas import insertar_renta
+from rentas import insertar_renta, obtener_dict_rentas
 from datetime import datetime
 from solicitudes_aprobacion import guarda_archivos_local, registrar_anuncio
 
@@ -132,37 +132,25 @@ def propiedades(propiedad='lista'):
 # Esta ruta es para mostrar la lista de propiedades previas
 # Esto fue copiado de la ruta anterior, pero se debe modificar para que muestre las propiedades rentadas previamente
 @app.route('/rentasPrevias', methods=['GET','POST'])
-@app.route('/rentasPrevias/<propiedad>', methods=['GET','POST'])
-def rentasPrevias(propiedad='lista'):
-    if request.method == 'GET':
-        if propiedad != 'lista':
-            propiedad = obtener_dict_propiedades()[int(propiedad)]
+@app.route('/rentasPrevias/<renta>', methods=['GET','POST'])
+def rentasPrevias(renta='lista'):
+    if renta != 'lista':
+        if 'email' in session:
+            email = session['email']
+            idUsuario = obtener_idusuario_por_email(email)
+            propiedad = obtener_dict_rentas(idUsuario[0][0])[int(renta)]
             dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
-            if 'email' in session:
-                email = session['email']
-                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
-            else:
-                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
+            return render_template('casaRentada.html', propiedad=propiedad, dueno=dueno, email=email)
         else:
-            propiedades = obtener_dict_propiedades()
-            dict_valores = obtener_valores_base()
-            zonas = dict_valores["zonas"]
-            fechas = dict_valores["fechas"]
-            if 'email' in session:
-                email = session['email']
-                return render_template('rentasPrevias.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
-            return render_template('rentasPrevias.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
-    elif request.method == 'POST':
-        zona = request.form['zona']
-        precio = request.form.get('precio',type=int)
-        fecha = request.form['fechas']
-        numHabitaciones = request.form.get('numHabitaciones')
-        buscar = request.form['buscar']
-        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
-        dict_valores = obtener_valores_base()
-        zonas = dict_valores["zonas"]
-        fechas = dict_valores["fechas"]
-        return render_template('rentasPrevias.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+                return redirect(url_for('login'))
+    else:
+        if 'email' in session:
+            email = session['email']
+            idUsuario = obtener_idusuario_por_email(email)
+            propiedades = obtener_dict_rentas(idUsuario[0][0])
+            return render_template('rentasPrevias.html', propiedades=propiedades, email=email)
+        else:
+                return redirect(url_for('login'))
 
 @app.route('/anunciar', methods=['GET', 'POST'])
 @app.route('/anunciar/<resultado>', methods=['GET', 'POST'])
