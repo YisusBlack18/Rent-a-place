@@ -97,18 +97,4 @@ CREATE TABLE rentas (
   FOREIGN KEY(propiedad_id) REFERENCES propiedades(ID) ON DELETE SET NULL
 );
 
-CREATE TABLE rentasprevias (
-  id INT NOT NULL PRIMARY KEY,
-  huespedes INT NOT NULL,
-  llegada DATE NOT NULL,
-  salida DATE NOT NULL,
-  cliente_id INT ,
-  propiedad_id INT ,
-  FOREIGN KEY(cliente_id) REFERENCES usuarios(id) ON DELETE SET NULL,
-  FOREIGN KEY(propiedad_id) REFERENCES propiedades(ID) ON DELETE SET NULL
-
-);
-
 INSERT INTO rentas (huespedes, llegada, salida, cliente_id, propiedad_id) VALUES (3, "2023-06-13", "2023-06-14", 1, 1);
-
-INSERT INTO rentasprevias (id, huespedes, llegada, salida, cliente_id, propiedad_id) VALUES ( 1, 3, "2023-06-13", "2023-06-14", 1, 1);

@@ -247,16 +247,5 @@ def pagar(propiedad='lista', rentado=False):
         insertar_renta(huespedes,llegada,salida,id[0][0],id_propiedad)
         return render_template('pagoRenta.html', email=email, propiedad = propiedad, huespedes=huespedes, llegada=llegada,salida=salida)
 
-@app.route('/rentasPrevias', methods=['GET', 'POST'])
-def rentasPrevias():
-    if request.method == 'GET':
-        if 'email' in session:
-            email = session['email']
-            listarentas = []
-            return render_template('rentasPrevias.html', email=email, rentas=listarentas)
-        else:
-            return redirect(url_for('login'))
-                
-
 if __name__ == "__main__":
     app.run(debug=True)
