@@ -168,10 +168,14 @@ def rentasPrevias(propiedad='lista'):
 @app.route('/anunciar/<resultado>', methods=['GET', 'POST'])
 def anunciar(resultado='anuncio'):
     if request.method == 'GET':
-        if resultado == 'exito':
-            return render_template('anuncioExitoso.html')
+        if 'email' in session:
+            email = session['email']
+            if resultado == 'exito':
+                return render_template('anuncioExitoso.html', email=email)
+            else:
+                return render_template('subirPropiedad.html', email=email)
         else:
-            return render_template('subirPropiedad.html')
+            return redirect(url_for('login'))
     elif request.method == 'POST':
         if 'email' in session:
             email = session['email']
@@ -243,7 +247,7 @@ def anunciar(resultado='anuncio'):
                           zona,colonia,calle,mapa,fotoPropiedad.filename,nombreContacto,emailContacto,telefonoContacto,redSocialContacto,fotoContacto.filename,documentosContacto.filename):
             return redirect(url_for('anunciar', resultado='exito'))
         else:
-            return render_template('subirPropiedad.html', error='Registro fallo, Servicio no disponible, intente mas tarde')
+            return render_template('subirPropiedad.html', error='Registro fallo, Servicio no disponible, intente mas tarde', email=email)
 
 @app.route('/anuncioExistoso', methods=['GET', 'POST'])
 
