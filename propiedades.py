@@ -55,6 +55,7 @@ def crea_dict_propiedades(rows=None):
             "Refrigeradora" : propiedad[19],
             "Banos" : "Si" if propiedad[10] != 0 else "No",
             "Fotos" : propiedad[20],
+            "Mapa" : propiedad[21],
             "Fecha" : propiedad[22]
         }
         dict_propiedades[propiedad[0]] = casa
