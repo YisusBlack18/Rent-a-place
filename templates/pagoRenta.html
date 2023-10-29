@@ -37,13 +37,8 @@
                     }]
                 });
             },
-
             onApprove: function(data, actions){
-                return actions.order.capture().then(function(orderData){
-                    
-                    window.location.href = "{{ url_for('pagar') }}/{{propiedad.ID}}/True";
-
-                });
+                window.location.href = "{{ url_for('pagar') }}/{{propiedad.ID}}/True";      
             }
         }).render('#paypal-button-container');
     </script>
