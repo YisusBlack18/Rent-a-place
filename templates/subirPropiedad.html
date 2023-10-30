@@ -98,10 +98,7 @@
                             <label class="labelrequisito" for="habitacionesSubirInfo">No. Habitaciones <p class="requisito">*</p></label>
                             <input type="number" id="habitacionesSubirInfo" min="0" required>
                         </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label class="labelrequisito" for="habitacionesSubirInfo">No. Camas <p class="requisito">*</p></label>
-                            <input type="number" id="habitacionesSubirInfo" min="0" required>
-                        </div>
+                        <!-- Num Camas Aqui -->
                         <div class="contenido-inputs subirInfo">
                             <label class="labelrequisito" for="salasSubirInfo">No. Salas <p class="requisito">*</p></label>
                             <input type="number" id="salasSubirInfo" min="0" required>
@@ -120,7 +117,13 @@
                         </div>
                         <div class="contenido-inputs subirInfo">
                             <label class="labelrequisito" for="aireAcondicionadoSubirInfo" style="color: red;">No. Aire Acondicionado <p class="requisito">*</p></label>
-                            <input type="number" min="0" id="aireAcondicionadoSubirInfo" required>
+                            <!-- Aqui va Num aire acondicionado INPUT NUMBER -->
+                            <!-- No van opciones de si o no -->
+                            <select name="aireAcondicionadoSubirInfo" id="aireAcondicionadoSubirInfo" required>
+                                <!-- AQUI VIENEN LAS OPCIONES -->
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
                         </div>
                         <div class="contenido-inputs subirInfo">
                             <label class="labelrequisito" for="wifiSubirInfo">Wifi <p class="requisito">*</p></label> 
@@ -154,14 +157,7 @@
                                 <option value="No">No</option>
                             </select>
                         </div>
-                        <div class="contenido-inputs subirInfo">
-                            <label for="cocheraSubirInfo">Patio Trasero</label>
-                            <select name="cocheraSubirInfo" id="cocheraSubirInfo">
-                                <!-- AQUI VIENEN LAS OPCIONES -->
-                                <option value="Si">Si</option>
-                                <option value="No">No</option>
-                            </select>
-                        </div>
+                        <!-- Patio Trasero Aqui -->
                         <div class="contenido-inputs subirInfo">
                             <label for="estadoSubirInfo">Estado</label>
                             <select name="estadoSubirInfo" id="estadoSubirInfo">
@@ -197,10 +193,7 @@
                                 <label class="labelrequisito" for="calleSubirInfo">Calle <p class="requisito">*</p></label>
                                 <input type="text" id="calleSubirInfo" required>
                             </div>
-                            <div class="contenido-inputs subirInfo">
-                                <label class="labelrequisito" for="calleSubirInfo">Código Postal <p class="requisito">*</p></label>
-                                <input type="number" min="0" id="calleSubirInfo" required>
-                            </div>
+                            <!-- Codigo Postal Aqui -->
                         </div>
                         <iframe id="mapaUbicacion" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3486.786097722649!2d-110.96479732398004!3d29.08246517542222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86ce85a066a6293b%3A0x6e5dabb78ba6fea4!2s5k%20ingenieria%20industrial%20y%20de%20sistemas!5e0!3m2!1sen!2smx!4v1695631623949!5m2!1sen!2smx" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </form>                    
