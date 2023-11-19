@@ -128,7 +128,75 @@ def propiedades(propiedad='lista'):
         zonas = dict_valores["zonas"]
         fechas = dict_valores["fechas"]
         return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+
+# Esta ruta es para mostrar la lista de todas las propiedades en la vista del Admin 
+@app.route('/propiedadesAdmin', methods=['GET','POST'])
+@app.route('/propiedadesAdmin/<propiedad>', methods=['GET','POST'])
+def propiedadesAdmin(propiedad='lista'):
+    if request.method == 'GET':
+        if propiedad != 'lista':
+            propiedad = obtener_dict_propiedades()[int(propiedad)]
+            dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
+            if 'email' in session:
+                email = session['email']
+                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
+            else:
+                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
+        else:
+            propiedades = obtener_dict_propiedades()
+            dict_valores = obtener_valores_base()
+            zonas = dict_valores["zonas"]
+            fechas = dict_valores["fechas"]
+            if 'email' in session:
+                email = session['email']
+                return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
+            return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+    elif request.method == 'POST':
+        zona = request.form['zona']
+        precio = request.form.get('precio',type=int)
+        fecha = request.form['fechas']
+        numHabitaciones = request.form.get('numHabitaciones')
+        buscar = request.form['buscar']
+        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
+        dict_valores = obtener_valores_base()
+        zonas = dict_valores["zonas"]
+        fechas = dict_valores["fechas"]
+        return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
     
+    # Esta ruta es para mostrar la lista de propiedades personales del arrendador
+@app.route('/propiedadesPersonales', methods=['GET','POST'])
+@app.route('/propiedadesPersonales/<propiedad>', methods=['GET','POST'])
+def propiedadesPersonales(propiedad='lista'):
+    if request.method == 'GET':
+        if propiedad != 'lista':
+            propiedad = obtener_dict_propiedades()[int(propiedad)]
+            dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
+            if 'email' in session:
+                email = session['email']
+                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
+            else:
+                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
+        else:
+            propiedades = obtener_dict_propiedades()
+            dict_valores = obtener_valores_base()
+            zonas = dict_valores["zonas"]
+            fechas = dict_valores["fechas"]
+            if 'email' in session:
+                email = session['email']
+                return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
+            return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+    elif request.method == 'POST':
+        zona = request.form['zona']
+        precio = request.form.get('precio',type=int)
+        fecha = request.form['fechas']
+        numHabitaciones = request.form.get('numHabitaciones')
+        buscar = request.form['buscar']
+        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
+        dict_valores = obtener_valores_base()
+        zonas = dict_valores["zonas"]
+        fechas = dict_valores["fechas"]
+        return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+
 # Esta ruta es para mostrar la lista de propiedades previas
 # Esto fue copiado de la ruta anterior, pero se debe modificar para que muestre las propiedades rentadas previamente
 @app.route('/rentasPrevias', methods=['GET','POST'])

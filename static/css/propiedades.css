@@ -90,6 +90,42 @@ input[type='search']:focus::-webkit-search-cancel-button {
     margin-bottom: 10px !important;
 }
 
+.btnEditar {
+    border: none;
+    border-radius: 3px;
+    background-color: #d7d7d7;
+    cursor: pointer;
+    width: 50%;
+    transition: 0.3s;
+}
+
+.btnEditar:hover {
+    background-color: #c1c1c1;
+}
+
+.btnEditar a {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.btnRevision {
+    border: none;
+    border-radius: 3px;
+    background-color: rgb(240, 240, 142);
+    cursor: pointer;
+    width: 50%;
+    transition: 0.3s;
+}
+
+.btnRevision:hover {
+    background-color: rgb(209, 209, 21);
+}
+
+.btnRevision a {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
 /* Diseño donde viene la paginacion */
 .pagination {
     margin: 20px;
