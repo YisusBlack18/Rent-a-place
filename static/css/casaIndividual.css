@@ -101,6 +101,25 @@ body {
     width: 100%;
 }
 
+.cajaBtnActivacion {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    /* margin-right: -250px; */
+}
+
+.btnActivacion {
+    border: none;
+    border-radius: 5px;
+    background-color: #d0d0d0;
+    padding: 5px 8px;
+}
+
+.btnActivacion:hover {
+    cursor: pointer !important;
+    background-color: #c1c1c1 !important;
+}
+
 /* #endregion UBICACION */
 
 /* #region USUARIO*/

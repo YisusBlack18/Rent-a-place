@@ -68,7 +68,27 @@ input[type='search']:focus::-webkit-search-cancel-button {
     padding: 5px 10px;
     margin: 10px 15px;
     min-width: 190px;
-    max-width: 210px;
+    max-width: 230px;
+}
+
+.subcaja {
+    display: flex;
+    /* flex-direction: row; */
+    /* justify-content: space-between; */
+    width: 100%;
+}
+
+.subcaja1 {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 70px;
+}
+
+.subcaja2 {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
 }
 
 .textochico {
@@ -95,7 +115,7 @@ input[type='search']:focus::-webkit-search-cancel-button {
     border-radius: 3px;
     background-color: #d7d7d7;
     cursor: pointer;
-    width: 50%;
+    /* width: 50%; */
     transition: 0.3s;
 }
 
@@ -104,7 +124,7 @@ input[type='search']:focus::-webkit-search-cancel-button {
 }
 
 .btnEditar a {
-    padding: 0 !important;
+    padding: 3px !important;
     margin: 0 !important;
 }
 
@@ -113,8 +133,9 @@ input[type='search']:focus::-webkit-search-cancel-button {
     border-radius: 3px;
     background-color: rgb(240, 240, 142);
     cursor: pointer;
-    width: 50%;
+    /* width: 50%; */
     transition: 0.3s;
+    margin-top: 8px;
 }
 
 .btnRevision:hover {
@@ -122,8 +143,53 @@ input[type='search']:focus::-webkit-search-cancel-button {
 }
 
 .btnRevision a {
-    padding: 0 !important;
+    padding: 5px !important;
     margin: 0 !important;
+}
+
+/* Diseño de la pantalla emergente */
+.pantallaEmergente {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.contenidoEmergente {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 70%;
+    border: 3px solid #38B6FF;
+}
+
+.contenidoEmergente h2 {
+    margin: 5px;
+    color: #38B6FF;
+}
+
+.mensaje {
+    width: 100%;
+    padding: 15px;
+    background-color: #d4d4d4;
+    border-radius: 5px;
+}
+
+.cerrar {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.cerrar:hover {
+    color: black;
 }
 
 /* Diseño donde viene la paginacion */

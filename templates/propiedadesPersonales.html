@@ -10,6 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="/static/js/pantallaEmergente.js"></script>
 </head>
 {% endblock %}
 {% block body%}
@@ -70,14 +71,37 @@
                 <!-- <div class="caja" style="opacity: 70%;"> -->
                 <div class="caja">
                     <div class="img">
-                        <img src={{casa.Fotos}} width="200" height="150">
+                        <img src={{casa.Fotos}} width="210" height="150">
                     </div>
                     <h2>${{casa.Precio}}</h2>
-                    <p style="font-weight: bold;">{{casa.Categoria}} Disponible</p>
-                    <p class="textochico">{{casa.ZonaEstado}}</p>
-                    <!-- Las propiedades puestas por default tendran el boton de Editar  -->
-                    <button class="btnEditar"><a href="/#">Editar</a></button>
-                    <button class="btnRevision"><a href="/#">Revision</a></button>
+                    <div class="subcaja">
+                        <div class="subcaja1">
+                            <p style="font-weight: bold;">{{casa.Categoria}} Disponible</p>
+                            <p class="textochico">{{casa.ZonaEstado}}</p>
+                        </div>
+                        <!-- Las propiedades puestas por default tendran el boton de Editar  -->
+                        <div class="subcaja2">
+                            <button class="btnEditar"><a href="/#">Editar</a></button>
+                            <button class="btnRevision">Revision</button>
+                            <a style="cursor: pointer;" onclick="mostrarPantallaEmergente()"><svg xmlns="http://www.w3.org/2000/svg" style="color: red;" width="30" height="30" fill="currentColor" class="bi bi-exclamation" viewBox="0 0 16 16">
+                                <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0L7.1 4.995z"/>
+                            </svg></a>
+                            <div id="miPantallaEmergente" class="pantallaEmergente">
+                                <div class="contenidoEmergente">
+                                    <span onclick="cerrarPantallaEmergente()" class="cerrar">&times;</span>
+                                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                                        <h2>Cambio Solicitado</h2>
+                                        <!-- Aqui debe de ponerse los mensajes que se le mandan al arrendador -->
+                                        <div class="mensaje">
+                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consectetur totam animi eos nesciunt officiis deserunt assumenda quos accusantium nulla inventore, culpa vero! Tempora hic quisquam corporis, asperiores dolor modi.
+                                        </div>
+                                    </div>
+                                    <!-- hora del mensaje -->
+                                    <p>02:58 PM</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 </a>
                 {% endfor %}
