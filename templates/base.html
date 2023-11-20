@@ -52,7 +52,9 @@
                         <!-- Aqui es la opcion si eres arrendador -->
                         <a href="/propiedadesPersonales">Propiedades Personales</a>
                         <!-- Aqui son las opciones del menu del Admin -->
+                        {% if tipo == 'Administrador' %}
                         <a href="/propiedadesAdmin">Todas las Propiedades</a>
+                        {% endif %}
                         <!-- Opcion de Cerrar Sesion -->
                         <a href="/logout">Cerrar Sesion</a>
                     </div>

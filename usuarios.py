@@ -83,7 +83,7 @@ def obtener_usuario(id):
     try:
         conn = crear_conexion()
         c = conn.cursor()
-        c.execute("SELECT id,nombre,telefono,email FROM usuarios WHERE id = {}".format(id))
+        c.execute("SELECT id,nombre,telefono,email,tipo FROM usuarios WHERE id = {}".format(id))
         rows = c.fetchall()
         conn.close()
         return rows
@@ -99,7 +99,8 @@ def crea_dict_usuario(id):
             "ID": user[0],
             "Nombre": user[1],
             "Telefono" : user[2],
-            "Email": user[3]
+            "Email": user[3],
+            "Tipo": user[4]
         }
         dict_usuario = usuario
     return dict_usuario

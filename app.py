@@ -1,6 +1,6 @@
 import os
 from flask import Flask, json, jsonify, redirect, render_template, request, session, url_for
-from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_valores_base
+from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_propiedades_por_dueno, obtener_valores_base
 from rentas import insertar_renta, obtener_dict_rentas
 from datetime import datetime
 from solicitudes_aprobacion import guarda_archivos_local, registrar_anuncio
@@ -18,7 +18,8 @@ def index():
     propiedades = obtener_dict_propiedades()
     if 'email' in session:
         email = session['email']
-        return render_template('index.html', propiedades=propiedades, email=email)
+        tipo = session['tipo']
+        return render_template('index.html', propiedades=propiedades, email=email, tipo=tipo)
     else:
         return render_template('index.html', propiedades=propiedades)
 
@@ -30,6 +31,7 @@ def login():
         password = request.form['password']
         if verifica_login(email,password):
             session['email'] = email
+            session['tipo'] = obtener_dict_usuario(obtener_idusuario_por_email(email)[0][0])['Tipo']
             return redirect(url_for('index'))
         else:
             return render_template('login.html', error='Correo o contraseña incorrectos')
@@ -134,23 +136,32 @@ def propiedades(propiedad='lista'):
 @app.route('/propiedadesAdmin/<propiedad>', methods=['GET','POST'])
 def propiedadesAdmin(propiedad='lista'):
     if request.method == 'GET':
-        if propiedad != 'lista':
-            propiedad = obtener_dict_propiedades()[int(propiedad)]
-            dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
-            if 'email' in session:
-                email = session['email']
-                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
-            else:
-                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
+        if 'tipo' in session:
+            tipoUsuario = session['tipo']
         else:
-            propiedades = obtener_dict_propiedades()
-            dict_valores = obtener_valores_base()
-            zonas = dict_valores["zonas"]
-            fechas = dict_valores["fechas"]
-            if 'email' in session:
-                email = session['email']
-                return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
-            return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+            tipoUsuario = 'Invitado'
+
+        if tipoUsuario == 'Administrador':
+            if propiedad != 'lista':
+                propiedad = obtener_dict_propiedades()[int(propiedad)]
+                dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
+                if 'email' in session:
+                    email = session['email']
+                    return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
+                else:
+                    return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
+            else:
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                if 'email' in session:
+                    email = session['email']
+                    return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
+                return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        else:
+            return redirect(url_for('index'))
+        
     elif request.method == 'POST':
         zona = request.form['zona']
         precio = request.form.get('precio',type=int)
@@ -168,23 +179,16 @@ def propiedadesAdmin(propiedad='lista'):
 @app.route('/propiedadesPersonales/<propiedad>', methods=['GET','POST'])
 def propiedadesPersonales(propiedad='lista'):
     if request.method == 'GET':
-        if propiedad != 'lista':
-            propiedad = obtener_dict_propiedades()[int(propiedad)]
-            dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
-            if 'email' in session:
-                email = session['email']
-                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
-            else:
-                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
-        else:
-            propiedades = obtener_dict_propiedades()
+        if 'email' in session:
+            email = session['email']
+            idUsuario = obtener_idusuario_por_email(email)
+            propiedades = obtener_propiedades_por_dueno(idUsuario[0][0])
             dict_valores = obtener_valores_base()
             zonas = dict_valores["zonas"]
             fechas = dict_valores["fechas"]
-            if 'email' in session:
-                email = session['email']
-                return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
-            return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+            return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
+        else:
+            return redirect(url_for('login'))
     elif request.method == 'POST':
         zona = request.form['zona']
         precio = request.form.get('precio',type=int)

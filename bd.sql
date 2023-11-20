@@ -1,5 +1,6 @@
 CREATE DATABASE IF NOT EXISTS rentaplace;
-CREATE DATABASE IF NOT EXISTS rentaplace;
+
+USE rentaplace;
 
 CREATE TABLE usuarios (
     id INT NOT NULL AUTO_INCREMENT,
@@ -7,11 +8,13 @@ CREATE TABLE usuarios (
     telefono VARCHAR(100) NOT NULL,
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
+    tipo ENUM('Administrador', 'Cliente') DEFAULT 'Cliente',
     imagen VARCHAR(100) DEFAULT NULL,
     PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-INSERT INTO usuarios (nombre, telefono, email, password) VALUES ('prueba', '6621000000', 'prueba@gmail.com', 'prueba123');
+INSERT INTO usuarios (nombre, telefono, email, password, tipo) VALUES ('prueba', '6621000000', 'prueba@gmail.com', 'prueba123', 'Administrador');
+INSERT INTO usuarios (nombre, telefono, email, password, tipo) VALUES ('prueba2', '6621000000', 'prueba2@gmail.com', 'prueba123', 'Cliente');
 
 CREATE TABLE propiedades (
     ID INT NOT NULL AUTO_INCREMENT,

@@ -24,6 +24,19 @@ def obtener_propiedad(id_propiedad):
     except Error as err:
         print("Algo salio mal: {}".format(err))
         return False
+    
+def obtener_propiedades_por_dueno(id_dueno):
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("SELECT * FROM propiedades WHERE ID_dueno = {}".format(id_dueno))
+        rows = c.fetchall()
+        conn.close()
+        result = crea_dict_propiedades(rows)
+        return result
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
 
 def crea_dict_propiedades(rows=None):
     if rows is None:
