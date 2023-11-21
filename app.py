@@ -336,5 +336,26 @@ def pagar(propiedad='lista', rentado=False):
         insertar_renta(huespedes,llegada,salida,id[0][0],id_propiedad)
         return render_template('pagoRenta.html', email=email, tipo=tipo,propiedad = propiedad, huespedes=huespedes, llegada=llegada,salida=salida)
 
+# Esta ruta es para que el administrador aprueba las casas
+@app.route('/aprobarPropiedades', methods=['GET', 'POST'])
+def aprobarPropiedades(propiedad='lista'):
+    if request.method == 'GET':
+        if 'tipo' in session:
+            tipoUsuario = session['tipo']
+        else:
+            tipoUsuario = 'Invitado'
+
+        if tipoUsuario == 'Administrador':
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                if 'email' in session:
+                    email = session['email']
+                    tipo = session['tipo']
+                    return render_template('aprobarPropiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo=tipo)
+        else:
+            return redirect(url_for('index'))
+
 if __name__ == "__main__":
     app.run(debug=True)
