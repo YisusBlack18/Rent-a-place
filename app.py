@@ -107,7 +107,8 @@ def propiedades(propiedad='lista'):
             dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
             if 'email' in session:
                 email = session['email']
-                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
+                tipo = session['tipo']
+                return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email, tipo=tipo)
             else:
                 return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
         else:
@@ -117,7 +118,8 @@ def propiedades(propiedad='lista'):
             fechas = dict_valores["fechas"]
             if 'email' in session:
                 email = session['email']
-                return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
+                tipo = session['tipo']
+                return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo=tipo)
             return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
     elif request.method == 'POST':
         zona = request.form['zona']
@@ -141,13 +143,14 @@ def propiedadesAdmin(propiedad='lista'):
         else:
             tipoUsuario = 'Invitado'
 
-        if tipoUsuario == 'Arrendador':
+        if tipoUsuario == 'Administrador':
             if propiedad != 'lista':
                 propiedad = obtener_dict_propiedades()[int(propiedad)]
                 dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
                 if 'email' in session:
                     email = session['email']
-                    return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email)
+                    tipo = session['tipo']
+                    return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email, tipo=tipo)
                 else:
                     return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
             else:
@@ -157,7 +160,8 @@ def propiedadesAdmin(propiedad='lista'):
                 fechas = dict_valores["fechas"]
                 if 'email' in session:
                     email = session['email']
-                    return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
+                    tipo = session['tipo']
+                    return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo=tipo)
                 return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
         else:
             return redirect(url_for('index'))
@@ -179,14 +183,21 @@ def propiedadesAdmin(propiedad='lista'):
 @app.route('/propiedadesPersonales/<propiedad>', methods=['GET','POST'])
 def propiedadesPersonales(propiedad='lista'):
     if request.method == 'GET':
-        if 'email' in session:
-            email = session['email']
-            idUsuario = obtener_idusuario_por_email(email)
-            propiedades = obtener_propiedades_por_dueno(idUsuario[0][0])
-            dict_valores = obtener_valores_base()
-            zonas = dict_valores["zonas"]
-            fechas = dict_valores["fechas"]
-            return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email)
+        if 'tipo' in session:
+            tipoUsuario = session['tipo']
+        else:
+            tipoUsuario = 'Invitado'
+
+        if tipoUsuario == 'Arrendador':
+            if 'email' in session:
+                email = session['email']
+                tipo = session['tipo']
+                idUsuario = obtener_idusuario_por_email(email)
+                propiedades = obtener_propiedades_por_dueno(idUsuario[0][0])
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo = tipo)
         else:
             return redirect(url_for('login'))
     elif request.method == 'POST':
@@ -209,18 +220,20 @@ def rentasPrevias(renta='lista'):
     if renta != 'lista':
         if 'email' in session:
             email = session['email']
+            tipo = session['tipo']
             idUsuario = obtener_idusuario_por_email(email)
             propiedad = obtener_dict_rentas(idUsuario[0][0])[int(renta)]
             dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
-            return render_template('casaRentada.html', propiedad=propiedad, dueno=dueno, email=email)
+            return render_template('casaRentada.html', propiedad=propiedad, dueno=dueno, email=email, tipo=tipo)
         else:
                 return redirect(url_for('login'))
     else:
         if 'email' in session:
             email = session['email']
+            tipo = session['tipo']
             idUsuario = obtener_idusuario_por_email(email)
             propiedades = obtener_dict_rentas(idUsuario[0][0])
-            return render_template('rentasPrevias.html', propiedades=propiedades, email=email)
+            return render_template('rentasPrevias.html', propiedades=propiedades, email=email, tipo=tipo)
         else:
                 return redirect(url_for('login'))
 
@@ -230,15 +243,17 @@ def anunciar(resultado='anuncio'):
     if request.method == 'GET':
         if 'email' in session:
             email = session['email']
+            tipo = session['tipo']
             if resultado == 'exito':
-                return render_template('anuncioExitoso.html', email=email)
+                return render_template('anuncioExitoso.html', email=email,tipo=tipo)
             else:
-                return render_template('subirPropiedad.html', email=email)
+                return render_template('subirPropiedad.html', email=email,tipo=tipo)
         else:
             return redirect(url_for('login'))
     elif request.method == 'POST':
         if 'email' in session:
             email = session['email']
+            tipo = session['tipo']
         
         data = request.form
         categoria = data['alojamiento']
@@ -279,7 +294,7 @@ def anunciar(resultado='anuncio'):
                           zona,colonia,calle,mapa,fotoPropiedad.filename,nombreContacto,emailContacto,telefonoContacto,redSocialContacto,fotoContacto.filename,documentosContacto.filename):
             return redirect(url_for('anunciar', resultado='exito'))
         else:
-            return render_template('subirPropiedad.html', error='Registro fallo, Servicio no disponible, intente mas tarde', email=email)
+            return render_template('subirPropiedad.html', error='Registro fallo, Servicio no disponible, intente mas tarde', email=email, tipo=tipo)
 
 @app.route('/anuncioExistoso', methods=['GET', 'POST'])
 
@@ -297,7 +312,8 @@ def rentar(propiedad='lista'):
     session['salida'] = salida
     if 'email' in session:
         email = session['email']
-        return render_template('informacionRenta.html', propiedad=propiedad, dueno=dueno, email=email, huespedes=huespedes, llegada=llegada, salida=salida)
+        tipo = session['tipo']
+        return render_template('informacionRenta.html', propiedad=propiedad, dueno=dueno, email=email, tipo=tipo, huespedes=huespedes, llegada=llegada, salida=salida)
     else:
         return redirect(url_for('login'))
 
@@ -309,15 +325,16 @@ def pagar(propiedad='lista', rentado=False):
     id_propiedad = int(propiedad)
     propiedad = obtener_dict_propiedades()[int(propiedad)]
     email = session['email']
+    tipo = session['tipo']
     id= obtener_idusuario_por_email(email)
     huespedes = session['huespedes']
     llegada = session['llegada']
     salida = session['salida']
     if(rentado==False):
-        return render_template('pagoRenta.html', propiedad=propiedad, rentado=rentado, email=email)
+        return render_template('pagoRenta.html', propiedad=propiedad, rentado=rentado, email=email, tipo=tipo)
     else:
         insertar_renta(huespedes,llegada,salida,id[0][0],id_propiedad)
-        return render_template('pagoRenta.html', email=email, propiedad = propiedad, huespedes=huespedes, llegada=llegada,salida=salida)
+        return render_template('pagoRenta.html', email=email, tipo=tipo,propiedad = propiedad, huespedes=huespedes, llegada=llegada,salida=salida)
 
 if __name__ == "__main__":
     app.run(debug=True)
