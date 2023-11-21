@@ -346,6 +346,8 @@ def aprobarPropiedades(propiedad='lista'):
             tipoUsuario = 'Invitado'
 
         if tipoUsuario == 'Administrador':
+                # propiedades provisionales para desarrollo front
+                # cambiar con las propiedades para aprobar
                 propiedades = obtener_dict_propiedades()
                 dict_valores = obtener_valores_base()
                 zonas = dict_valores["zonas"]

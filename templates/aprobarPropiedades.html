@@ -20,42 +20,25 @@
         <div class="cajaPropiedades">
             <div class="cajas">
                 {% for id,casa in propiedades.items() %}
-                <a href="/propiedades/{{id}}" class="cajasLink">
-                <!-- div class caja con estilo opacity: 70%; para las propiedades desactivadas-->
-                <!-- <div class="caja" style="opacity: 70%;"> -->
+                <div class="cajasLink">
                 <div class="caja">
-                    <div class="img">
+                    <a class="img" href="/propiedades/{{id}}">
                         <img class="imgTamano" src={{casa.Fotos}}>
-                    </div>
+                    </a>
                     <h2>${{casa.Precio}}</h2>
                     <div class="subcaja">
                         <div class="subcaja1">
                             <p style="font-weight: bold;">{{casa.Titulo}}</p>
                             <p class="textochico">{{casa.ZonaEstado}}</p>
                         </div>
-                        <!-- Las propiedades puestas por default tendran el boton de Editar  -->
                         <div class="subcaja2">
                             <button class="boton btnAceptar">Aceptar</button>
                             <button class="boton btnRechazar">Rechazar</button>
-                            <button class="boton btnSolicitarCambio">Solicitar Cambio</button>
-                            <div id="miPantallaEmergente" class="pantallaEmergente">
-                                <div class="contenidoEmergente">
-                                    <span onclick="cerrarPantallaEmergente()" class="cerrar">&times;</span>
-                                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
-                                        <h2>Cambio Solicitado</h2>
-                                        <!-- Aqui debe de ponerse los mensajes que se le mandan al arrendador -->
-                                        <div class="mensaje">
-                                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consectetur totam animi eos nesciunt officiis deserunt assumenda quos accusantium nulla inventore, culpa vero! Tempora hic quisquam corporis, asperiores dolor modi.
-                                        </div>
-                                    </div>
-                                    <!-- hora del mensaje -->
-                                    <p>02:58 PM</p>
-                                </div>
-                            </div>
+                            <button class="boton btnSolicitarCambio" onclick="mostrarPantallaEmergente()">Solicitar Cambio</button>
                         </div>
                     </div>
                 </div>
-                </a>
+            </div>
                 {% endfor %}
             </div>
         </div>
@@ -72,6 +55,13 @@
                 </ul>
             </nav>
         </div>
+
+        <div id="miPantallaEmergente" class="pantallaEmergente">
+            <div class="contenidoEmergente">
+                <span onclick="cerrarPantallaEmergente()" class="cerrar">&times;</span>
+            </div>
+        </div>
+
     </div>
 {% endblock %}
 </html>

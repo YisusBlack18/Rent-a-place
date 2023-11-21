@@ -1,5 +1,6 @@
 .cajaPropiedades{
     width: 100%;
+    padding: 2rem 0;
 }
 
 .cajas{
@@ -60,4 +61,16 @@
 
 .btnSolicitarCambio{
     background-color: #f0f08e;
+}
+
+/* Diseño de la pantalla emergente */
+
+.contenidoEmergente {
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    margin: 0;
 }
