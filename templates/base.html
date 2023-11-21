@@ -24,6 +24,8 @@
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     
                     <!-- Links del lado izquierdo -->
+                    <!-- Opciones solo para Clientes y Arrendadores -->
+                    {% if tipo != 'Administrador' %}
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="/propiedades">Renta</a>
                     </li>
@@ -33,12 +35,28 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contacto</a>
                     </li>
+                    {% endif %}
+                    <!-- Opciones solo para Administrador -->
+                    {% if tipo == 'Administrador' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Aprobar Propiedades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Todas Las Propiedades</a>
+                    </li>
+                    {% endif %}
                 </ul>
                 {% block login %}
                 {% if email %}
                 <!-- Links del lado Derecho -->
+                <!-- Opcion Mis Rentas solo disponible para usuarios de tipo Cliente -->
+                {% if tipo == 'Cliente' %}
                 <button class="nav-link anunciar"><a href="{{ url_for('rentasPrevias') }}">Mis Rentas</a></button>
+                {% endif %}
+                <!-- Opcion Anunciar disponible para usuarios Clientes y Arrendadores -->
+                {% if tipo != 'Administrador' %}
                 <button class="nav-link anunciar"><a href="/anunciar">Anunciar</a></button>
+                {% endif %}
                 <div class="dropdown">
                     <button id="dropdown-btn" class="nav-link sesion">{{email}}
                         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
@@ -48,11 +66,17 @@
                     </button>
                     <div class="dropdown-content">
                         <a href="/users">Perfil</a>
+                        <!-- Estas son las opciones de cliente -->
+                        {% if tipo == 'Cliente' %}
                         <a href="/rentasPrevias">Rentas Previas</a>
+                        {% endif %}
                         <!-- Aqui es la opcion si eres arrendador -->
+                        {% if tipo == 'Arrendador' %}
                         <a href="/propiedadesPersonales">Propiedades Personales</a>
+                        {% endif %}
                         <!-- Aqui son las opciones del menu del Admin -->
                         {% if tipo == 'Administrador' %}
+                        <a href="/aprobarPropiedades">Aprobar Propiedades</a>
                         <a href="/propiedadesAdmin">Todas las Propiedades</a>
                         {% endif %}
                         <!-- Opcion de Cerrar Sesion -->

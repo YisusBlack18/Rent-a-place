@@ -141,7 +141,7 @@ def propiedadesAdmin(propiedad='lista'):
         else:
             tipoUsuario = 'Invitado'
 
-        if tipoUsuario == 'Administrador':
+        if tipoUsuario == 'Arrendador':
             if propiedad != 'lista':
                 propiedad = obtener_dict_propiedades()[int(propiedad)]
                 dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
