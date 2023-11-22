@@ -93,6 +93,9 @@ CREATE TABLE solicitudes_anuncio (
     PRIMARY KEY (ID)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+INSERT INTO solicitudes_anuncio (ID_usuario, Titulo, Descripcion, Categoria, Precio, Metros2, Direccion, NoHabitaciones, NoSalas, NoBanios, NoPersonas, ZonaEstado, Antiguedad, Estado, Amueblada, Cochera, WIFI, Television, Refrigeradora, Fotos, UrlMapa, nombre, telefono, email, redSocial, imagen, documentos)
+VALUES (1, 'Casa Bonita', 'Casa Azul', 'Casa', 10000.00, 200.00, 'Avenida H', 3, 2, 2, 6, 'Sonora', 10, 'Disponible', 'Si', 'Si', 'Si', 'Si', 'Si', 'https://cdn1.es.casasrurales.net/emp/fotoscasas/5/4/0/3/2/tb_Fachada%20con%20terraza.jpg', "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3486.786097722649!2d-110.96479732398004!3d29.08246517542222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86ce85a066a6293b%3A0x6e5dabb78ba6fea4!2s5k%20ingenieria%20industrial%20y%20de%20sistemas!5e0!3m2!1sen!2smx!4v1695631623949!5m2!1sen!2smx", 'miguel','6620000000', 'bot@gmail.com','Facebook',null, null);
+
 CREATE TABLE rentas (
   renta_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   huespedes INT NOT NULL,
