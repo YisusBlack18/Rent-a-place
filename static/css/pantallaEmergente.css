@@ -1,0 +1,31 @@
+/* Diseño de la pantalla emergente */
+
+.contenidoEmergente {
+    position: fixed;
+    top:50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%;
+    height: 60%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* #region MENSAJES */
+
+/* #endregion MENSAJES*/ 
+
+@media screen and (max-width: 1024px ) {
+    .contenidoEmergente {
+        width: 60%;
+        height: 60%;
+    }
+}
+
+@media screen and (max-width: 768px ) {
+    .contenidoEmergente {
+        width: 70%;
+        height: 70%;
+    }
+}

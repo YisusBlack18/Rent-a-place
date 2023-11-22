@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rent Place</title>
     <link rel="stylesheet" href="/static/css/casaIndividual.css">
+    <link rel="stylesheet" href="/static/css/propiedades.css">
+    <link rel="stylesheet" href="/static/css/pantallaEmergente.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
@@ -15,6 +17,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
         crossorigin="anonymous"></script>
+    <script src="/static/js/pantallaEmergente.js"></script>
 </head>
 {% endblock %}
 {% block body %}
@@ -127,15 +130,19 @@
         <!-- Cuadro de la informacion de la ubicacion -->
         <div class="infoUbicacion">
             <h4>Información de Ubicación</h4>
-            <iframe id="mapaUbicacion" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3486.786097722649!2d-110.96479732398004!3d29.08246517542222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86ce85a066a6293b%3A0x6e5dabb78ba6fea4!2s5k%20ingenieria%20industrial%20y%20de%20sistemas!5e0!3m2!1sen!2smx!4v1695631623949!5m2!1sen!2smx" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <iframe id="mapaUbicacion"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3486.786097722649!2d-110.96479732398004!3d29.08246517542222!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x86ce85a066a6293b%3A0x6e5dabb78ba6fea4!2s5k%20ingenieria%20industrial%20y%20de%20sistemas!5e0!3m2!1sen!2smx!4v1695631623949!5m2!1sen!2smx"
+                width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
         <!-- Caja de botones para activar o desactivar la propiedad -->
         <div class="cajaBtnActivacion">
             <!-- Se mostrara solo una opcion -->
 
-            
+
             <button class="btnActivacion" onclick="mostrarPantallaEmergente()">Desactivar Propiedad</button>
-            <div id="miPantallaEmergente" class="pantallaEmergente">
+
+            <!--<div id="miPantallaEmergente" class="pantallaEmergente">
                 <div class="contenidoEmergente">
                     <span onclick="cerrarPantallaEmergente()" class="cerrar">&times;</span>
                     <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
@@ -146,7 +153,7 @@
                         <button class="btnPantallaEmergente" onclick="cerrarPantallaEmergente()">No</button>
                     </div>
                 </div>
-            </div>
+            </div>-->
             <!-- <button class="btnActivacion">Activar Propiedad</button> -->
         </div>
 
@@ -155,33 +162,33 @@
     <!-- Esta es la seccion de la parte de la derecha de la pantalla donde sale el info del usuario y los inputs para reservar -->
     <div class="casaIndividualDerecha">
         <div class="infoUsuario">
-                <img src="/static/img/persona-removebg-preview.png" width="150px" alt="">
-                <h5>{{dueno.Nombre}}</h5>
-                <button class="btnTelefono">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                            class="bi bi-telephone-fill" viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-                                d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
-                        </svg>
-                    </div>
-                    <div>
-                        {{dueno.Telefono}}
-                    </div>
-                </button>
-                <button class="btnMensaje">
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
-                            class="bi bi-envelope-fill" viewBox="0 0 16 16">
-                            <path
-                                d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
-                        </svg>
-                    </div>
-                    <div>
-                        Enviar Mensaje
-                    </div>
-                </button>
-        
+            <img src="/static/img/persona-removebg-preview.png" width="150px" alt="">
+            <h5>{{dueno.Nombre}}</h5>
+            <button class="btnTelefono">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                        class="bi bi-telephone-fill" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                    </svg>
+                </div>
+                <div>
+                    {{dueno.Telefono}}
+                </div>
+            </button>
+            <button class="btnMensaje">
+                <div>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor"
+                        class="bi bi-envelope-fill" viewBox="0 0 16 16">
+                        <path
+                            d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555ZM0 4.697v7.104l5.803-3.558L0 4.697ZM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757Zm3.436-.586L16 11.801V4.697l-5.803 3.546Z" />
+                    </svg>
+                </div>
+                <div>
+                    Enviar Mensaje
+                </div>
+            </button>
+
 
         </div>
         <!-- Seccion de la reservacion, num huespedes, llegada, salida, y boton -->
@@ -189,7 +196,7 @@
             <div class="reservacion">
                 <input type="number" name="huespedes" id="huespedes" placeholder="No. Huespedes" required>
                 <label for="">Llegada</label>
-                <input type="date" name="llegada"  id="llegada" placeholder="Llegada" required>
+                <input type="date" name="llegada" id="llegada" placeholder="Llegada" required>
                 <label for="">Salida</label>
                 <input type="date" name="salida" id="salida" placeholder="Salida" required>
                 <input class="reservar" type="submit" name="reservar" id="reservar">
@@ -198,14 +205,29 @@
     </div>
 </div>
 
+<div id="miPantallaEmergente" class="pantallaEmergente">
+    <div class="contenidoEmergente">
+        <div id="cerrar-container">
+            <span onclick="cerrarPantallaEmergente()" class="cerrar">&times;</span>
+        </div>
+        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+            <div class="mensaje">
+                ¿Está seguro que quiere desactivar esta propiedad?
+            </div>
+            <button class="btnPantallaEmergente" onclick="mostrarPantallaEmergente2()">Si</button>
+            <button class="btnPantallaEmergente" onclick="cerrarPantallaEmergente()">No</button>
+        </div>
+    </div>
+</div>
+
 <script>
     const form = document.getElementById('formReservacion');
 
-    form.addEventListener('submit', function(e){
+    form.addEventListener('submit', function (e) {
         const llegadaValor = llegada.value;
         const salidaValor = salida.value;
 
-        if(Date.parse(llegadaValor) > Date.parse(salidaValor)){
+        if (Date.parse(llegadaValor) > Date.parse(salidaValor)) {
             e.preventDefault();
 
             alert("La fecha de salida debe ser depues del de llegada")
