@@ -132,9 +132,24 @@
         <!-- Caja de botones para activar o desactivar la propiedad -->
         <div class="cajaBtnActivacion">
             <!-- Se mostrara solo una opcion -->
-            <button class="btnActivacion">Desactivar Propiedad</button>
+
+            
+            <button class="btnActivacion" onclick="mostrarPantallaEmergente()">Desactivar Propiedad</button>
+            <div id="miPantallaEmergente" class="pantallaEmergente">
+                <div class="contenidoEmergente">
+                    <span onclick="cerrarPantallaEmergente()" class="cerrar">&times;</span>
+                    <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                        <div class="mensaje">
+                            ¿Está seguro que quiere desactivar esta propiedad?
+                        </div>
+                        <button class="btnPantallaEmergente" onclick="mostrarPantallaEmergente2()">Si</button>
+                        <button class="btnPantallaEmergente" onclick="cerrarPantallaEmergente()">No</button>
+                    </div>
+                </div>
+            </div>
             <!-- <button class="btnActivacion">Activar Propiedad</button> -->
         </div>
+
     </div>
 
     <!-- Esta es la seccion de la parte de la derecha de la pantalla donde sale el info del usuario y los inputs para reservar -->
