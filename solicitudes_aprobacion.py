@@ -14,6 +14,63 @@ def registrar_anuncio(categoria,titulo,explicacion,precio,habitaciones,salas,ban
     except Error as err:
         print("Algo salio mal: {}".format(err))
         return False
+    
+def crea_dict_solicitudes(rows=None):
+    if rows is None:
+        solicitudes = obtener_solicutudes()
+    else:
+        solicitudes = rows
+    dict_solicitudes = {}
+    for solicitud in solicitudes:
+        casa = {
+            "ID": solicitud[0],
+            "ID_usuario" : solicitud[1],
+            "Titulo" : solicitud[2],
+            "Descripcion": solicitud[3],
+            "Categoria" : solicitud[4],
+            "Precio" : solicitud[5],
+            "Metros2" : solicitud[6],
+            "Direccion" : solicitud[7],
+            "NoHabitaciones" : solicitud[8],
+            "NoSalas" : solicitud[9],
+            "NoBanios" : solicitud[10],
+            "NoPersonas" : solicitud[11],
+            "ZonaEstado" : solicitud[12],
+            "Antiguedad" : solicitud[13],
+            "Estado" : solicitud[14],
+            "Amueblada" : solicitud[15],
+            "Cochera" : solicitud[16],
+            "WIFI" : solicitud[17],
+            "Television" : solicitud[18],
+            "Refrigeradora" : solicitud[19],
+            "Banos" : "Si" if solicitud[10] != 0 else "No",
+            "Fotos" : solicitud[20],
+            "Mapa" : solicitud[21],
+            "Fecha" : solicitud[22],
+            "nombreUsuario" : solicitud[23],
+            "telefonoUsuario" : solicitud[24],
+            "emailUsuario" : solicitud[25],
+            "redSocialUsuario" : solicitud[26],
+            "imagenUsuario" : solicitud[27],
+            "documentosUsuario" : solicitud[28],
+        }
+        dict_solicitudes[solicitud[0]] = casa
+    return dict_solicitudes
+
+def obtener_solicutudes():
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("SELECT * FROM solicitudes_anuncio")
+        rows = c.fetchall()
+        conn.close()
+        return rows
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
+    
+def obtener_dict_solicitudes():
+    return crea_dict_solicitudes()
 
 # Esta funcion almacena los archivos en la carpeta de archivos local
 def guarda_archivos_local(files):
