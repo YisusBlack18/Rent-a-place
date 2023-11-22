@@ -70,7 +70,77 @@
     top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 70%;
-    height: 70%;
+    width: 40%;
+    height: 60%;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* #region MENSAJES */
+#mensajes-container{
+    overflow-y: scroll;
+    flex: 1;
+}
+
+#mensajes-container::-webkit-scrollbar{
+    display: none;
+}
+
+.mensajeHora{
+    margin-bottom: 0.75rem;
+}
+
+.mensaje{
+    background-color: #eceaea;
+    border-radius: 10px 10px 10px 0px;
+}
+
+.hora{
+    padding-left: 0.5rem;
+}
+
+/* #endregion MENSAJES*/ 
+
+#mensaje-form{
+    display: flex;
+    background-color: rgb(247, 247, 247);
+    margin-top: 1rem;
+}
+
+#inputEscribir{
+    flex: 1;
+    background-color: rgb(247, 247, 247);
+    border: none;
+    padding: 0.5rem;
+}
+
+#inputEscribir:focus{
+    outline: none;
+}
+
+.botonMensaje{
+    width: auto;
+    height: auto;
+    background-color:transparent;
+    border: none;
+}
+
+#iconoEnviar{
+    width: 2rem;
+    height: auto;
+}
+
+@media screen and (max-width: 1024px ) {
+    .contenidoEmergente {
+        width: 60%;
+        height: 60%;
+    }
+}
+
+@media screen and (max-width: 768px ) {
+    .contenidoEmergente {
+        width: 70%;
+        height: 70%;
+    }
 }
