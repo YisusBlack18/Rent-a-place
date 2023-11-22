@@ -3,7 +3,7 @@ from flask import Flask, json, jsonify, redirect, render_template, request, sess
 from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_propiedades_por_dueno, obtener_valores_base
 from rentas import insertar_renta, obtener_dict_rentas
 from datetime import datetime
-from solicitudes_aprobacion import guarda_archivos_local, registrar_anuncio
+from solicitudes_aprobacion import guarda_archivos_local, obtener_dict_solicitudes, registrar_anuncio
 
 from usuarios import obtener_dict_usuario, validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono, obtener_idusuario_por_email
 
@@ -348,7 +348,7 @@ def aprobarPropiedades(propiedad='lista'):
         if tipoUsuario == 'Administrador':
                 # propiedades provisionales para desarrollo front
                 # cambiar con las propiedades para aprobar
-                propiedades = obtener_dict_propiedades()
+                propiedades = obtener_dict_solicitudes()
                 dict_valores = obtener_valores_base()
                 zonas = dict_valores["zonas"]
                 fechas = dict_valores["fechas"]
