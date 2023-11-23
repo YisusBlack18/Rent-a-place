@@ -30,7 +30,7 @@
             {% for id,casa in propiedades.items() %}
             <div class="cajasLink">
                 <div class="caja">
-                    <a class="img" href="/propiedades/{{id}}">
+                    <a class="img" href="/aprobarPropiedades/{{id}}">
                         <img class="imgTamano" src={{casa.Fotos}}>
                     </a>
                     <h2>${{casa.Precio}}</h2>
@@ -43,7 +43,7 @@
                             <form method="post">
                             <button class="boton btnAceptar" name="Aceptar" type="submit" value="{{id}}">Aceptar</button>
                             <button class="boton btnRechazar" name="Rechazar" type="submit" value="{{id}}">Rechazar</button>
-                            <button class="boton btnSolicitarCambio" onclick="mostrarPantallaEmergente()">Solicitar
+                            <button class="boton btnSolicitarCambio" type="button" onclick="mostrarPantallaEmergente()">Solicitar
                                 Cambio</button>
                             </form>
                         </div>

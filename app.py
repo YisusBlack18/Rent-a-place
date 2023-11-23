@@ -336,6 +336,7 @@ def pagar(propiedad='lista', rentado=False):
 
 # Esta ruta es para que el administrador aprueba las casas
 @app.route('/aprobarPropiedades', methods=['GET', 'POST'])
+@app.route('/aprobarPropiedades/<propiedad>', methods=['GET', 'POST'])
 def aprobarPropiedades(propiedad='lista'):
     if request.method == 'GET':
         if 'tipo' in session:
@@ -344,6 +345,7 @@ def aprobarPropiedades(propiedad='lista'):
             tipoUsuario = 'Invitado'
 
         if tipoUsuario == 'Administrador':
+            if propiedad == 'lista':
                 # propiedades provisionales para desarrollo front
                 # cambiar con las propiedades para aprobar
                 propiedades = obtener_dict_solicitudes()
@@ -354,6 +356,14 @@ def aprobarPropiedades(propiedad='lista'):
                     email = session['email']
                     tipo = session['tipo']
                     return render_template('aprobarPropiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo=tipo)
+            elif propiedad != 'lista':
+                propiedad = obtener_dict_solicitudes()[int(propiedad)]
+                if 'email' in session:
+                    email = session['email']
+                    tipo = session['tipo']
+                    return render_template('solicitud.html', propiedad=propiedad, email=email, tipo=tipo)
+                else:
+                    return render_template('solicitud.html', propiedad=propiedad)
         else:
             return redirect(url_for('index'))
     elif request.method == 'POST':
@@ -374,6 +384,8 @@ def aprobarPropiedades(propiedad='lista'):
             else:
                 propiedades = obtener_dict_solicitudes()
                 return render_template('aprobarPropiedades.html', propiedades=propiedades, error='Registro fallo, Servicio no disponible, intente mas tarde')
+        else:
+            return render_template('404.html'), 404
 
 
 
