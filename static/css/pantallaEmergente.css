@@ -5,27 +5,89 @@
     top:50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40%;
-    height: 60%;
+    width: 35%;
+    height: 40%;
     margin: 0;
     display: flex;
     flex-direction: column;
 }
 
+.mensaje{
+    margin-top: 1rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
+    color: #38B6FF;
+}
+
+#botonesDesactivar{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.btnPantallaEmergente{
+    background-color: #a3dcfd;
+    padding: 0.5rem;
+    width: 30%;
+    border: none;
+    border-radius: 3px;
+}
+
+
+.btnPantallaEmergente:hover{
+    background-color: #66c5fc;
+}
+
+
 /* #region MENSAJES */
 
 /* #endregion MENSAJES*/ 
 
+@media screen and (max-width: 1200px ) {
+    .mensaje{
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .btnPantallaEmergente{
+        width: 40%;
+    }
+}
+
 @media screen and (max-width: 1024px ) {
     .contenidoEmergente {
         width: 60%;
-        height: 60%;
+        height: 45%;
+    }
+
+    .btnPantallaEmergente{
+        width: 30%;
     }
 }
 
 @media screen and (max-width: 768px ) {
     .contenidoEmergente {
         width: 70%;
-        height: 70%;
+        height: 50%;
+    }
+}
+
+@media screen and (max-width: 545px ) {
+    .contenidoEmergente {
+        width: 70%;
+        height: 50%;
+    }
+
+    .mensaje{
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    #botonesDesactivar{
+        flex-direction: column;
+        row-gap: 2rem;
+    }
+    .btnPantallaEmergente{
+        width: 100%;
     }
 }
