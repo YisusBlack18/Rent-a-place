@@ -15,6 +15,18 @@ def registrar_anuncio(categoria,titulo,explicacion,precio,habitaciones,salas,ban
         print("Algo salio mal: {}".format(err))
         return False
     
+def obtener_solicitud(id_solicitud):
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("SELECT * FROM solicitudes_anuncio WHERE ID = {}".format(id_solicitud))
+        rows = c.fetchall()
+        conn.close()
+        return rows
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
+    
 def crea_dict_solicitudes(rows=None):
     if rows is None:
         solicitudes = obtener_solicutudes()
@@ -56,6 +68,33 @@ def crea_dict_solicitudes(rows=None):
         }
         dict_solicitudes[solicitud[0]] = casa
     return dict_solicitudes
+
+def aprobar_solicitud(id_solicitud):
+    solicitud = obtener_dict_solicitudes()[int(id_solicitud)]
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute(f"INSERT INTO propiedades (ID_dueno,Titulo,Descripcion,Categoria,Precio,Metros2,Direccion,NoHabitaciones,NoSalas,NoBanios,NoPersonas,ZonaEstado,Antiguedad,Estado,Amueblada,Cochera,WIFI,Television,Refrigeradora,Fotos,UrlMapa,FechaCreacion,Activacion) VALUES ('{solicitud['ID_usuario']}','{solicitud['Titulo']}','{solicitud['Descripcion']}','{solicitud['Categoria']}','{solicitud['Precio']}','{solicitud['Metros2']}','{solicitud['Direccion']}','{solicitud['NoHabitaciones']}','{solicitud['NoSalas']}','{solicitud['NoBanios']}','{solicitud['NoPersonas']}','{solicitud['ZonaEstado']}','{solicitud['Antiguedad']}','{solicitud['Estado']}','{solicitud['Amueblada']}','{solicitud['Cochera']}','{solicitud['WIFI']}','{solicitud['Television']}','{solicitud['Refrigeradora']}','{solicitud['Fotos']}','{solicitud['Mapa']}','{solicitud['Fecha']}',True)")
+        conn.commit()
+        c.execute(f"DELETE FROM solicitudes_anuncio WHERE ID = {id_solicitud}")
+        conn.commit()
+        conn.close()
+        return True
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
+
+def rechazar_solicitud(id_solicitud):
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute(f"DELETE FROM solicitudes_anuncio WHERE ID = {id_solicitud}")
+        conn.commit()
+        conn.close()
+        return True
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
 
 def obtener_solicutudes():
     try:

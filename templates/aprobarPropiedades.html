@@ -40,10 +40,12 @@
                             <p class="textochico">{{casa.ZonaEstado}}</p>
                         </div>
                         <div class="subcaja2">
-                            <button class="boton btnAceptar">Aceptar</button>
-                            <button class="boton btnRechazar">Rechazar</button>
+                            <form method="post">
+                            <button class="boton btnAceptar" name="Aceptar" type="submit" value="{{id}}">Aceptar</button>
+                            <button class="boton btnRechazar" name="Rechazar" type="submit" value="{{id}}">Rechazar</button>
                             <button class="boton btnSolicitarCambio" onclick="mostrarPantallaEmergente()">Solicitar
                                 Cambio</button>
+                            </form>
                         </div>
                     </div>
                 </div>

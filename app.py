@@ -3,7 +3,7 @@ from flask import Flask, json, jsonify, redirect, render_template, request, sess
 from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_propiedades_por_dueno, obtener_valores_base
 from rentas import insertar_renta, obtener_dict_rentas
 from datetime import datetime
-from solicitudes_aprobacion import guarda_archivos_local, obtener_dict_solicitudes, registrar_anuncio
+from solicitudes_aprobacion import aprobar_solicitud, guarda_archivos_local, obtener_dict_solicitudes, obtener_solicitud, rechazar_solicitud, registrar_anuncio
 
 from usuarios import obtener_dict_usuario, validar_correo, validar_telefono, verifica_correo, verifica_login, verifica_registro, verifica_telefono, obtener_idusuario_por_email
 
@@ -296,8 +296,6 @@ def anunciar(resultado='anuncio'):
         else:
             return render_template('subirPropiedad.html', error='Registro fallo, Servicio no disponible, intente mas tarde', email=email, tipo=tipo)
 
-@app.route('/anuncioExistoso', methods=['GET', 'POST'])
-
 @app.route('/rentar', methods=['GET','POST'])
 @app.route('/rentar/<propiedad>', methods=['GET','POST'])
 def rentar(propiedad='lista'):
@@ -358,6 +356,26 @@ def aprobarPropiedades(propiedad='lista'):
                     return render_template('aprobarPropiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo=tipo)
         else:
             return redirect(url_for('index'))
+    elif request.method == 'POST':
+        if "Aceptar" in request.form:
+            id_solicitud = request.form['Aceptar']
+            if aprobar_solicitud(id_solicitud):
+                propiedades = obtener_dict_solicitudes()
+                return redirect(url_for('aprobarPropiedades'))
+            else:
+                propiedades = obtener_dict_solicitudes()
+                return render_template('aprobarPropiedades.html', propiedades=propiedades, error='Registro fallo, Servicio no disponible, intente mas tarde')
+
+        elif "Rechazar" in request.form:
+            id_solicitud = request.form['Rechazar']
+            if rechazar_solicitud(id_solicitud):
+                propiedades = obtener_dict_solicitudes()
+                return redirect(url_for('aprobarPropiedades'))
+            else:
+                propiedades = obtener_dict_solicitudes()
+                return render_template('aprobarPropiedades.html', propiedades=propiedades, error='Registro fallo, Servicio no disponible, intente mas tarde')
+
+
 
 if __name__ == "__main__":
     app.run(debug=True)
