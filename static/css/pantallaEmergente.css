@@ -12,11 +12,20 @@
     flex-direction: column;
 }
 
+.contenidoEmergente2 {
+    width: 35%;
+    height: 25%;
+}
+
 .mensaje{
     margin-top: 1rem;
     margin-bottom: 2.5rem;
     text-align: center;
     color: #38B6FF;
+}
+
+.mensaje2{
+    margin: 0;
 }
 
 #botonesDesactivar{
@@ -49,6 +58,10 @@
         margin-bottom: 2rem;
     }
 
+    .mensaje2{
+        margin: 0;
+    }
+
     .btnPantallaEmergente{
         width: 40%;
     }
@@ -58,6 +71,11 @@
     .contenidoEmergente {
         width: 60%;
         height: 45%;
+    }
+
+    .contenidoEmergente2 {
+        width: 50%;
+        height: 25%;
     }
 
     .btnPantallaEmergente{
@@ -70,6 +88,10 @@
         width: 70%;
         height: 50%;
     }
+    .contenidoEmergente2 {
+        width: 60%;
+        height: 25%;
+    }
 }
 
 @media screen and (max-width: 545px ) {
@@ -78,9 +100,18 @@
         height: 50%;
     }
 
+    .contenidoEmergente2 {
+        width: 70%;
+        height: 25%;
+    }
+
     .mensaje{
         margin-top: 1rem;
         margin-bottom: 2rem;
+    }
+
+    .mensaje2{
+        margin: 0;
     }
 
     #botonesDesactivar{
