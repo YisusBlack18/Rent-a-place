@@ -65,6 +65,7 @@
             <h2>Casas en renta</h2>
             <div class="cajas">
                 {% for id,casa in propiedades.items() %}
+                {% if casa.Activacion == 1 %}
                 <a href="/propiedades/{{id}}">
                 <div class="caja">
                     <div class="img">
@@ -99,6 +100,7 @@
                     </div>
                 </div>
                 </a>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>

@@ -133,6 +133,30 @@ def obtener_valores_base():
     except Error as err:
         print("Algo salio mal: {}".format(err))
         return False
+    
+def desactivar_propiedad(id_propiedad):
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("UPDATE propiedades SET Activacion = 0 WHERE ID = {}".format(id_propiedad))
+        conn.commit()
+        conn.close()
+        return True
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
+    
+def activar_propiedad(id_propiedad):
+    try:
+        conn = crear_conexion()
+        c = conn.cursor()
+        c.execute("UPDATE propiedades SET Activacion = 1 WHERE ID = {}".format(id_propiedad))
+        conn.commit()
+        conn.close()
+        return True
+    except Error as err:
+        print("Algo salio mal: {}".format(err))
+        return False
 
 def agrega_dict_valores(dicc,id,rows):
     dicc[id] = []

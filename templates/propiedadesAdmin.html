@@ -65,7 +65,8 @@
             <h2>Casas en renta</h2>
             <div class="cajas">
                 {% for id,casa in propiedades.items() %}
-                <a href="/propiedades/{{id}}">
+                {% if casa.Activacion == 1 %}
+                <a href="/propiedadesAdmin/{{id}}">
                 <!-- div class caja con estilo opacity: 70%; para las propiedades desactivadas-->
                 <!-- <div class="caja" style="opacity: 70%;"> -->
                 <div class="caja">
@@ -79,6 +80,22 @@
                     <button class="btnEditar"><a href="/#">Editar</a></button>
                 </div>
                 </a>
+                {% else %}
+                <a href="/propiedadesAdmin/{{id}}">
+                <!-- div class caja con estilo opacity: 70%; para las propiedades desactivadas-->
+                <!-- <div class="caja" style="opacity: 70%;"> -->
+                <div class="cajaDesactivada">
+                    <div class="img">
+                        <img src={{casa.Fotos}} width="200" height="150">
+                    </div>
+                    <h2>${{casa.Precio}}</h2>
+                    <p style="font-weight: bold;">{{casa.Categoria}} Disponible</p>
+                    <p class="textochico">{{casa.ZonaEstado}}</p>
+                    <!-- Las propiedades puestas por default tendran el boton de Editar  -->
+                    <button class="btnEditar"><a href="/propiedadesAdmin/{{id}}">Editar</a></button>
+                </div>
+                </a>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>

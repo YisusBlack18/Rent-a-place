@@ -1,6 +1,6 @@
 import os
 from flask import Flask, json, jsonify, redirect, render_template, request, session, url_for
-from propiedades import filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_propiedades_por_dueno, obtener_valores_base
+from propiedades import activar_propiedad, desactivar_propiedad, filtrar_propiedades, obtener_dict_propiedades, obtener_propiedad, obtener_propiedades, obtener_propiedades_por_dueno, obtener_valores_base
 from rentas import insertar_renta, obtener_dict_rentas
 from datetime import datetime
 from solicitudes_aprobacion import aprobar_solicitud, guarda_archivos_local, obtener_dict_solicitudes, obtener_solicitud, rechazar_solicitud, registrar_anuncio
@@ -122,16 +122,45 @@ def propiedades(propiedad='lista'):
                 return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo=tipo)
             return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
     elif request.method == 'POST':
-        zona = request.form['zona']
-        precio = request.form.get('precio',type=int)
-        fecha = request.form['fechas']
-        numHabitaciones = request.form.get('numHabitaciones')
-        buscar = request.form['buscar']
-        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
-        dict_valores = obtener_valores_base()
-        zonas = dict_valores["zonas"]
-        fechas = dict_valores["fechas"]
-        return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        if "filtrar" in request.form:
+            zona = request.form['zona']
+            precio = request.form.get('precio',type=int)
+            fecha = request.form['fechas']
+            numHabitaciones = request.form.get('numHabitaciones')
+            buscar = request.form['buscar']
+            propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
+            dict_valores = obtener_valores_base()
+            zonas = dict_valores["zonas"]
+            fechas = dict_valores["fechas"]
+            return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        elif "desactivar" in request.form:
+            if desactivar_propiedad(propiedad):
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+            else:
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        elif "activar" in request.form:
+            if activar_propiedad(propiedad):
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+            else:
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedades.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        else:
+            return render_template('404.html'), 404
 
 # Esta ruta es para mostrar la lista de todas las propiedades en la vista del Admin 
 @app.route('/propiedadesAdmin', methods=['GET','POST'])
@@ -167,16 +196,45 @@ def propiedadesAdmin(propiedad='lista'):
             return redirect(url_for('index'))
         
     elif request.method == 'POST':
-        zona = request.form['zona']
-        precio = request.form.get('precio',type=int)
-        fecha = request.form['fechas']
-        numHabitaciones = request.form.get('numHabitaciones')
-        buscar = request.form['buscar']
-        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
-        dict_valores = obtener_valores_base()
-        zonas = dict_valores["zonas"]
-        fechas = dict_valores["fechas"]
-        return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        if "filtrar" in request.form:
+            zona = request.form['zona']
+            precio = request.form.get('precio',type=int)
+            fecha = request.form['fechas']
+            numHabitaciones = request.form.get('numHabitaciones')
+            buscar = request.form['buscar']
+            propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
+            dict_valores = obtener_valores_base()
+            zonas = dict_valores["zonas"]
+            fechas = dict_valores["fechas"]
+            return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        elif "desactivar" in request.form:
+            if desactivar_propiedad(propiedad):
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+            else:
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        elif "activar" in request.form:
+            if activar_propiedad(propiedad):
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+            else:
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesAdmin.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        else:
+            return render_template('404.html'), 404
     
     # Esta ruta es para mostrar la lista de propiedades personales del arrendador
 @app.route('/propiedadesPersonales', methods=['GET','POST'])
@@ -189,28 +247,67 @@ def propiedadesPersonales(propiedad='lista'):
             tipoUsuario = 'Invitado'
 
         if tipoUsuario == 'Arrendador':
-            if 'email' in session:
-                email = session['email']
-                tipo = session['tipo']
-                idUsuario = obtener_idusuario_por_email(email)
-                propiedades = obtener_propiedades_por_dueno(idUsuario[0][0])
-                dict_valores = obtener_valores_base()
-                zonas = dict_valores["zonas"]
-                fechas = dict_valores["fechas"]
-                return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo = tipo)
+            if propiedad != 'lista':
+                propiedad = obtener_dict_propiedades()[int(propiedad)]
+                dueno = obtener_dict_usuario(int(propiedad['ID_dueno']))
+                if 'email' in session:
+                    email = session['email']
+                    tipo = session['tipo']
+                    return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno, email=email, tipo=tipo)
+                else:
+                    return render_template('casaIndividual.html', propiedad=propiedad, dueno=dueno)
+            else:
+                if 'email' in session:
+                    email = session['email']
+                    tipo = session['tipo']
+                    idUsuario = obtener_idusuario_por_email(email)
+                    propiedades = obtener_propiedades_por_dueno(idUsuario[0][0])
+                    dict_valores = obtener_valores_base()
+                    zonas = dict_valores["zonas"]
+                    fechas = dict_valores["fechas"]
+                    return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas, email=email, tipo = tipo)
         else:
             return redirect(url_for('login'))
     elif request.method == 'POST':
-        zona = request.form['zona']
-        precio = request.form.get('precio',type=int)
-        fecha = request.form['fechas']
-        numHabitaciones = request.form.get('numHabitaciones')
-        buscar = request.form['buscar']
-        propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
-        dict_valores = obtener_valores_base()
-        zonas = dict_valores["zonas"]
-        fechas = dict_valores["fechas"]
-        return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        if "filtrar" in request.form:
+            zona = request.form['zona']
+            precio = request.form.get('precio',type=int)
+            fecha = request.form['fechas']
+            numHabitaciones = request.form.get('numHabitaciones')
+            buscar = request.form['buscar']
+            propiedades = filtrar_propiedades(zona,precio,fecha,numHabitaciones,buscar)
+            dict_valores = obtener_valores_base()
+            zonas = dict_valores["zonas"]
+            fechas = dict_valores["fechas"]
+            return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        elif "desactivar" in request.form:
+            if desactivar_propiedad(propiedad):
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+            else:
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        elif "activar" in request.form:
+            if activar_propiedad(propiedad):
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+            else:
+                propiedades = obtener_dict_propiedades()
+                dict_valores = obtener_valores_base()
+                zonas = dict_valores["zonas"]
+                fechas = dict_valores["fechas"]
+                return render_template('propiedadesPersonales.html', propiedades=propiedades, zonas=zonas, fechas=fechas)
+        else:
+            return render_template('404.html'), 404
 
 # Esta ruta es para mostrar la lista de propiedades previas
 # Esto fue copiado de la ruta anterior, pero se debe modificar para que muestre las propiedades rentadas previamente

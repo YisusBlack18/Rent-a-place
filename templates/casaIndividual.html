@@ -140,7 +140,13 @@
             <!-- Se mostrara solo una opcion -->
 
 
-            <button class="btnActivacion" id="btnActivacion" onclick="mostrarPantallaEmergente()">Desactivar Propiedad</button>
+            <button class="btnActivacion" id="btnActivacion" onclick="mostrarPantallaEmergente()">
+                {% if propiedad.Activacion == 1 %}
+                Desactivar Propiedad
+                {% else %}
+                Activar Propiedad
+                {% endif %}
+            </button>
 
             <!--<div id="miPantallaEmergente" class="pantallaEmergente">
                 <div class="contenidoEmergente">
@@ -212,11 +218,21 @@
         </div>
         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
             <div class="mensaje" id="mensajeEmergente">
+                {% if propiedad.Activacion == 1 %}
                 ¿Está seguro que quiere desactivar esta propiedad?
+                {% else %}
+                ¿Está seguro que quiere activar esta propiedad?
+                {% endif %}
             </div>
             <div id="botonesDesactivar">
-                <button class="btnPantallaEmergente" onclick="mostrarPantallaEmergente2()">Si</button>
+                <form method="post">
+                {% if propiedad.Activacion == 1 %}
+                <button class="btnPantallaEmergente" onclick="mostrarPantallaEmergente2()" id="desactivar" name="desactivar" type="submit">Si</button>
+                {% else %}
+                <button class="btnPantallaEmergente" onclick="mostrarPantallaEmergente2()" id="activar" name="activar" type="submit">Si</button>
+                {% endif %}
                 <button class="btnPantallaEmergente" onclick="cerrarPantallaEmergente()">No</button>
+                </form>
             </div>
 
         </div>
@@ -230,7 +246,11 @@
         </div>
         <div style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 0.5rem;">
             <div class="mensaje mensaje2" id="mensajeEmergente2">
+                {% if propiedad.Activacion == 1 %}
                 La propiedad ha sido desactivada correctamente
+                {% else %}
+                La propiedad ha sido activada correctamente
+                {% endif %}
             </div>
         </div>
     </div>

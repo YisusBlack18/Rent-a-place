@@ -66,7 +66,8 @@
             <h2>Casas en renta</h2>
             <div class="cajas">
                 {% for id,casa in propiedades.items() %}
-                <a href="/propiedades/{{id}}">
+                {% if casa.Activacion == 1 %}
+                <a href="/propiedadesPersonales/{{id}}">
                 <!-- div class caja con estilo opacity: 70%; para las propiedades desactivadas-->
                 <!-- <div class="caja" style="opacity: 70%;"> -->
                 <div class="caja">
@@ -81,7 +82,7 @@
                         </div>
                         <!-- Las propiedades puestas por default tendran el boton de Editar  -->
                         <div class="subcaja2">
-                            <button class="btnEditar"><a href="/#">Editar</a></button>
+                            <button class="btnEditar"><a href="/propiedadesPersonales/{{id}}">Editar</a></button>
                             <button class="btnRevision">Revision</button>
                             <a style="cursor: pointer;" onclick="mostrarPantallaEmergente()"><svg xmlns="http://www.w3.org/2000/svg" style="color: red;" width="30" height="30" fill="currentColor" class="bi bi-exclamation" viewBox="0 0 16 16">
                                 <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0L7.1 4.995z"/>
@@ -104,6 +105,46 @@
                     </div>
                 </div>
                 </a>
+                {% else %}
+                <a href="/propiedadesPersonales/{{id}}">
+                    <!-- div class caja con estilo opacity: 70%; para las propiedades desactivadas-->
+                    <!-- <div class="caja" style="opacity: 70%;"> -->
+                    <div class="cajaDesactivada">
+                        <div class="img">
+                            <img src={{casa.Fotos}} width="210" height="150">
+                        </div>
+                        <h2>${{casa.Precio}}</h2>
+                        <div class="subcaja">
+                            <div class="subcaja1">
+                                <p style="font-weight: bold;">{{casa.Categoria}} Disponible</p>
+                                <p class="textochico">{{casa.ZonaEstado}}</p>
+                            </div>
+                            <!-- Las propiedades puestas por default tendran el boton de Editar  -->
+                            <div class="subcaja2">
+                                <button class="btnEditar"><a href="/propiedadesPersonales/{{id}}">Editar</a></button>
+                                <button class="btnRevision">Revision</button>
+                                <a style="cursor: pointer;" onclick="mostrarPantallaEmergente()"><svg xmlns="http://www.w3.org/2000/svg" style="color: red;" width="30" height="30" fill="currentColor" class="bi bi-exclamation" viewBox="0 0 16 16">
+                                    <path d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.553.553 0 0 1-1.1 0L7.1 4.995z"/>
+                                </svg></a>
+                                <div id="miPantallaEmergente" class="pantallaEmergente">
+                                    <div class="contenidoEmergente">
+                                        <span onclick="cerrarPantallaEmergente()" class="cerrar">&times;</span>
+                                        <div style="display: flex; justify-content: center; align-items: center; flex-direction: column;">
+                                            <h2>Cambio Solicitado</h2>
+                                            <!-- Aqui debe de ponerse los mensajes que se le mandan al arrendador -->
+                                            <div class="mensaje">
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores consectetur totam animi eos nesciunt officiis deserunt assumenda quos accusantium nulla inventore, culpa vero! Tempora hic quisquam corporis, asperiores dolor modi.
+                                            </div>
+                                        </div>
+                                        <!-- hora del mensaje -->
+                                        <p>02:58 PM</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                {% endif %}
                 {% endfor %}
             </div>
         </div>
