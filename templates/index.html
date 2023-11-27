@@ -36,13 +36,13 @@
             <!-- Condicion: si existe una destacada ponerlo en un div -->
             <div class="cajas">
                 {% set n = namespace(x=0) %}
-                {% for id,casa in propiedades.items() %}
+                {% for id, casa in propiedades.items() %}
                     {% if n.x < 2 %}
                         <a href="/propiedades/{{id}}">
-                        <div class="caja">
-                            <div class="img">
-                                <img src={{casa.Fotos}} width="200" height="150">
-                            </div>
+                            <div class="caja {% if casa.Activacion == 0 %}desactivada{% endif %}">
+                                <div class="img">
+                                    <img src={{casa.Fotos}} width="200" height="150">
+                                </div>
                             <h2>${{casa.Precio}}</h2>
                             <p style="font-weight: bold;">{{casa.Categoria}} Disponible</p>
                             <p class="textochico">{{casa.ZonaEstado}}</p>
