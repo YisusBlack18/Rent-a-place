@@ -37,7 +37,8 @@
 .btnPantallaEmergente{
     background-color: #a3dcfd;
     padding: 0.5rem;
-    width: 30%;
+    width: 60px; /* Ancho fijo en píxeles, ajusta según sea necesario */
+    min-width: 60px; /* Ancho mínimo para asegurar que el texto se ajuste */
     border: none;
     border-radius: 3px;
 }
