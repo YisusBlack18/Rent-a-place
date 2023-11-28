@@ -50,7 +50,7 @@
                 {% if email %}
                 <!-- Links del lado Derecho -->
                 <!-- Opcion Mis Rentas solo disponible para usuarios de tipo Cliente -->
-                {% if tipo == 'Cliente' %}
+                {% if tipo != 'Administrador' %}
                 <button class="nav-link anunciar"><a href="{{ url_for('rentasPrevias') }}">Mis Rentas</a></button>
                 {% endif %}
                 <!-- Opcion Anunciar disponible para usuarios Clientes y Arrendadores -->
@@ -71,7 +71,7 @@
                         <a href="/rentasPrevias">Rentas Previas</a>
                         {% endif %}
                         <!-- Aqui es la opcion si eres arrendador -->
-                        {% if tipo == 'Arrendador' %}
+                        {% if tipo == 'Cliente' %}
                         <a href="/propiedadesPersonales">Propiedades Personales</a>
                         {% endif %}
                         <!-- Aqui son las opciones del menu del Admin -->
