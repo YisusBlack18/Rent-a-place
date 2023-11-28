@@ -352,6 +352,9 @@ def anunciar(resultado='anuncio'):
             email = session['email']
             tipo = session['tipo']
         
+        idUser = obtener_idusuario_por_email(email)
+        idUser = idUser[0][0]
+
         data = request.form
         categoria = data['alojamiento']
         titulo = data['titulo']
@@ -387,7 +390,7 @@ def anunciar(resultado='anuncio'):
         guarda_archivos_local(fotoContacto)
         guarda_archivos_local(documentosContacto)
 
-        if registrar_anuncio(categoria,titulo,explicacion,precio,habitaciones,salas,banos,metros,edad,acondicionado,wifi,television,amueblada,cochera,estado,personas,
+        if registrar_anuncio(idUser,categoria,titulo,explicacion,precio,habitaciones,salas,banos,metros,edad,acondicionado,wifi,television,amueblada,cochera,estado,personas,
                           zona,colonia,calle,mapa,fotoPropiedad.filename,nombreContacto,emailContacto,telefonoContacto,redSocialContacto,fotoContacto.filename,documentosContacto.filename):
             return redirect(url_for('anunciar', resultado='exito'))
         else:

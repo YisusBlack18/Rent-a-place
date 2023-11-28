@@ -1,0 +1,77 @@
+Date : 2023-11-27 17:55:03
+Directory : c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place
+Total : 41 files,  5089 codes, 364 comments, 545 blanks, all 5998 lines
+
+Languages
++------------+------------+------------+------------+------------+------------+
+| language   | files      | code       | comment    | blank      | total      |
++------------+------------+------------+------------+------------+------------+
+| HTML       |         17 |      1,989 |        157 |         67 |      2,213 |
+| CSS        |         12 |      1,770 |         74 |        334 |      2,178 |
+| Python     |          6 |        959 |         46 |         85 |      1,090 |
+| JavaScript |          3 |        266 |         87 |         46 |        399 |
+| SQL        |          1 |         97 |          0 |         13 |        110 |
+| JSON       |          1 |          7 |          0 |          0 |          7 |
+| Markdown   |          1 |          1 |          0 |          0 |          1 |
++------------+------------+------------+------------+------------+------------+
+
+Directories
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                                                          | files      | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                                                             |         41 |      5,089 |        364 |        545 |      5,998 |
+| . (Files)                                                                                                                     |          8 |      1,057 |         46 |         98 |      1,201 |
+| .vs                                                                                                                           |          1 |          7 |          0 |          0 |          7 |
+| static                                                                                                                        |         15 |      2,036 |        161 |        380 |      2,577 |
+| static\css                                                                                                                    |         12 |      1,770 |         74 |        334 |      2,178 |
+| static\js                                                                                                                     |          3 |        266 |         87 |         46 |        399 |
+| templates                                                                                                                     |         17 |      1,989 |        157 |         67 |      2,213 |
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| filename                                                                                                                      | language   | code       | comment    | blank      | total      |
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\.vs\VSWorkspaceState.json                | JSON       |          7 |          0 |          0 |          7 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\README.md                                | Markdown   |          1 |          0 |          0 |          1 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\app.py                                   | Python     |        444 |         16 |         30 |        490 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\bd.sql                                   | SQL        |         97 |          0 |         13 |        110 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\controlador_base_datos.py                | Python     |         43 |          0 |          6 |         49 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\propiedades.py                           | Python     |        151 |          4 |         14 |        169 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\rentas.py                                | Python     |         93 |          5 |         12 |        110 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\solicitudes_aprobacion.py                | Python     |        117 |         18 |         10 |        145 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\anuncio.css                   | CSS        |        249 |         14 |         43 |        306 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\aprobarPropiedades.css        | CSS        |        117 |          4 |         25 |        146 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\base.css                      | CSS        |        205 |          9 |         45 |        259 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\casaIndividual.css            | CSS        |        225 |          8 |         47 |        280 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\index.css                     | CSS        |        153 |         11 |         28 |        192 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\informacionRenta.css          | CSS        |         91 |          6 |         15 |        112 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\login.css                     | CSS        |        133 |          4 |         20 |        157 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\pagoRenta.css                 | CSS        |         11 |          0 |          1 |         12 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\pantallaEmergente.css         | CSS        |         98 |          3 |         23 |        124 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\propiedades.css               | CSS        |        206 |          8 |         40 |        254 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\registro.css                  | CSS        |        183 |          1 |         26 |        210 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\css\subirPropiedadSegundoPaso.css | CSS        |         99 |          6 |         21 |        126 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\js\anuncio.js                     | JavaScript |        238 |         87 |         39 |        364 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\js\mensajeria.js                  | JavaScript |          6 |          0 |          1 |          7 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\static\js\pantallaEmergente.js           | JavaScript |         22 |          0 |          6 |         28 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\404.html                       | HTML       |         13 |          0 |          0 |         13 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\anuncioExitoso.html            | HTML       |         60 |          3 |          0 |         63 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\aprobarPropiedades.html        | HTML       |        106 |          2 |          5 |        113 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\base.html                      | HTML       |        132 |         17 |          7 |        156 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\casaIndividual.html            | HTML       |        234 |         26 |         16 |        276 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\casaRentada.html               | HTML       |        142 |         11 |          4 |        157 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\index.html                     | HTML       |         82 |          8 |          4 |         94 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\informacionRenta.html          | HTML       |         97 |          4 |         12 |        113 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\login.html                     | HTML       |         40 |          2 |          1 |         43 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\pagoRenta.html                 | HTML       |         47 |          1 |          2 |         50 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\propiedades.html               | HTML       |        115 |          6 |          1 |        122 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\propiedadesAdmin.html          | HTML       |        107 |          9 |          1 |        117 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\propiedadesPersonales.html     | HTML       |        152 |         13 |          1 |        166 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\registro.html                  | HTML       |         89 |          0 |          0 |         89 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\rentasPrevias.html             | HTML       |         69 |          5 |          1 |         75 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\solicitud.html                 | HTML       |        131 |          9 |          4 |        144 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\templates\subirPropiedad.html            | HTML       |        373 |         41 |          8 |        422 |
+| c:\Users\jesus.DESKTOP-PC\OneDrive - Universidad de Sonora\7mo S\PDS II\Rent-a-place\usuarios.py                              | Python     |        111 |          3 |         13 |        127 |
+| Total                                                                                                                         |            |      5,089 |        364 |        545 |      5,998 |
++-------------------------------------------------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
